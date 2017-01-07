@@ -1,12 +1,9 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.6)
 project(UnionFind)
 
-# set(PROJECT_OUTPUT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/bin)
-# set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_OUTPUT_DIR})
-set(BINARY_NAME UnionFind)
+set(PROJECT_BINARY "UnionFind")
 
-set(SOURCE_FILES unionfind.cpp)
-add_executable(${BINARY_NAME} ${SOURCE_FILES})
+set(SOURCE_FILES main.cpp UnionFind.cpp)
+add_executable(${PROJECT_BINARY} ${SOURCE_FILES})
 
-# set_property(TARGET ${BINARY_NAME} PROPERTY CXX_STANDARD 14)
-# set_property(TARGET ${BINARY_NAME} PROPERTY CXX_STANDARD_REQUIRED ON)
+add_subdirectory(test)
