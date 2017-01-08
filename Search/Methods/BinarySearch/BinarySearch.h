@@ -15,15 +15,17 @@ class BinarySearch {
     std::size_t mid;
 
     while(low <= high) {
-      mid = (high + low)/2;
+      mid = (low + (high - low))/2;
       if(value > container_[mid]) {
-        low = mid;
+        low = mid - 1;
       } else if(value < container_[mid]) {
-        high = mid;
+        high = mid + 1;
       } else {
         return true;
       }
     }
+
+    return false;
   }
 
  private:
