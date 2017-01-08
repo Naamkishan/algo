@@ -16,8 +16,10 @@ UnionFind::UnionFind(size_t nodes) {
 size_t UnionFind::root(size_t i) {
   std::size_t root_index = container_[i];
 
-  while(container_[root_index] != root_index)
+  while(container_[root_index] != root_index) {
+    container_[root_index] = container_[container_[root_index]];  // make every node point to its grand parent
     root_index = container_[root_index];
+  }
 
   return root_index;
 }
