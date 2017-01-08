@@ -12,9 +12,10 @@ class BinarySearch {
   bool find(const T& value) {
     std::size_t high = container_.size() - 1; // account for the 0 based index
     std::size_t low = 0;
-    std::size_t mid = (high + low)/2;
+    std::size_t mid;
 
     while(low <= high) {
+      mid = (high + low)/2;
       if(value > container_[mid]) {
         low = mid;
       } else if(value < container_[mid]) {
@@ -22,8 +23,6 @@ class BinarySearch {
       } else {
         return true;
       }
-
-      mid = (high + low)/2;
     }
   }
 
