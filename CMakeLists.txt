@@ -1,16 +1,16 @@
-cmake_minimum_required(VERSION 3.6)
+cmake_minimum_required(VERSION 3.5)
 project(algo)
 
 set(CMAKE_CXX_STANDARD 14)
 
 set(CMAKE_BINARY_DIR ${CMAKE_CURRENT_SOURCE_DIR}/bin)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
-set(PROJECT_BINARY algo)
+# set(PROJECT_BINARY algo)
 
-set(SOURCE_FILES main.cpp)
-add_executable(${PROJECT_BINARY} ${SOURCE_FILES})
+# set(SOURCE_FILES main.cpp)
+# add_executable(${PROJECT_BINARY} ${SOURCE_FILES})
 
 # set_property(TARGET ${BINARY_NAME} PROPERTY CXX_STANDARD 14)
 # set_property(TARGET ${BINARY_NAME} PROPERTY CXX_STANDARD_REQUIRED ON)
 
-add_subdirectory(UnionFind)
+add_subdirectory(Search)
