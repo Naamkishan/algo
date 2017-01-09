@@ -9,23 +9,23 @@ class BinarySearch {
   template<std::size_t N>
   BinarySearch(const T(&values)[N]) : container_(values, std::end(values)) {}
 
-  bool find(const T& value) {
-    std::size_t high = container_.size() - 1; // account for the 0 based index
-    std::size_t low = 0;
-    std::size_t mid;
+  int find(const T& value) {
+    int high = container_.size() - 1; // account for the 0 based index
+    int low = 0;
+    int mid;
 
     while(low <= high) {
-      mid = (low + (high - low))/2;
+      mid = low + (high - low)/2;
       if(value > container_[mid]) {
-        low = mid - 1;
+        low = mid + 1;
       } else if(value < container_[mid]) {
-        high = mid + 1;
+        high = mid - 1;
       } else {
-        return true;
+        return mid;
       }
     }
 
-    return false;
+    return -1;
   }
 
  private:

@@ -9,37 +9,37 @@ TEST(TestBinaryFind, Initialisation) {
 TEST(TestBinaryFind, PositiveSearch) {
   int values[] = {1, 2, 3, 4, 5, 6};
   BinarySearch<int> bs(values);
-  ASSERT_TRUE(bs.find(3));
+  ASSERT_TRUE(bs.find(3) == 2);
 }
 
 TEST(TestBinaryFind, PositiveSearchLeft) {
   int values[] = {1, 2, 3, 4, 5, 6};
   BinarySearch<int> bs(values);
-  ASSERT_TRUE(bs.find(2));
+  ASSERT_TRUE(bs.find(2) == 1);
 }
 
 TEST(TestBinaryFind, PositiveSearchRight) {
   int values[] = {1, 2, 3, 4, 5, 6};
   BinarySearch<int> bs(values);
-  ASSERT_TRUE(bs.find(5));
+  ASSERT_TRUE(bs.find(5) == 4);
 }
 
 TEST(TestBinaryFind, PositiveSearchFirst) {
   int values[] = {1, 2, 3, 4, 5, 6};
   BinarySearch<int> bs(values);
-  ASSERT_TRUE(bs.find(1));
+  ASSERT_TRUE(bs.find(1) == 0);
 }
 
 TEST(TestBinaryFind, PositiveSearchLast) {
   int values[] = {1, 2, 3, 4, 5, 6};
   BinarySearch<int> bs(values);
-  ASSERT_TRUE(bs.find(6));
+  ASSERT_TRUE(bs.find(6) == 5);
 }
 
 TEST(TestBinaryFind, NegativeSearch) {
   int values[] = {1, 2, 3, 4, 5, 6};
   BinarySearch<int> bs(values);
-  ASSERT_FALSE(bs.find(0));
+  ASSERT_TRUE(bs.find(0) == -1);
 }
 
 
