@@ -1,14 +1,27 @@
 #include <gtest/gtest.h>
 #include "Stack.h"
 
-TEST(TestBinaryFind, Initialisation) {
-  Stack<int> stack;
+TEST(TestStack, Initialisation) {
+  ASSERT_NO_THROW(Stack<int> stack);
 }
 
-TEST(TestBinaryFind, StackPush) {
+TEST(TestStack, StackPush) {
   Stack<int> stack;
-  ASSERT_TRUE(false);
+  stack.push(10);
+  ASSERT_TRUE(stack.size() == 1);
 }
+
+TEST(TestStack, StackPop) {
+  Stack<int> stack;
+  stack.push(10);
+  ASSERT_TRUE(stack.pop() == 10);
+}
+
+TEST(TestStack, StackEmpty) {
+  Stack<int> stack;
+  ASSERT_TRUE(stack.empty());
+}
+
 
 
 int main(int argc, char** argv) {
