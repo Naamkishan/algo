@@ -7,3 +7,6 @@ The top folder will act like a place holder while the sub-directories will conta
 * Search Algorithms
     * UnionFind
     * Binary Search
+    
+* Stacks and Queues
+    * Stack

@@ -14,3 +14,4 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 # set_property(TARGET ${BINARY_NAME} PROPERTY CXX_STANDARD_REQUIRED ON)
 
 add_subdirectory(Search)
+add_subdirectory(Stack_Queues)
