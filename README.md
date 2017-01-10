@@ -8,5 +8,6 @@ The top folder will act like a place holder while the sub-directories will conta
     * UnionFind
     * Binary Search
     
-* Stacks and Queues
+* DS - Data Structures    
+    * Linked List
     * Stack
