@@ -1,3 +1,4 @@
+
 #ifndef ALGO_DS_LINKEDLIST_H
 #define ALGO_DS_LINKEDLIST_H
 
@@ -27,115 +28,107 @@ class LinkedList {
 
 
  public:
-  LinkedList() : head_{nullptr}, size_{0} {}
+  LinkedList() : head_{nullptr} {}
 
   // Manipulators
   LinkedList& push_back(const T& value) {
     Node *node = new Node(value);
-    update_tail(node);
+    append_node(node);
     return *this;
 
   }
 
   LinkedList& push_back(const T&& value) {
     Node *node = new Node(value);
-    update_tail(node);
+    append_node(node);
     return *this;
   }
 
 
   LinkedList& push_front(const T& value) {
-    Node *node = new Node(value, head_);
-    update_head(node);
+    head_ = new Node(value, head_);
     return *this;
   }
 
   LinkedList& push_front(const T&& value) {
-    Node *node = new Node(value, head_);
-    update_head(node);
+    head_ = new Node(value, head_);
     return *this;
   }
 
   auto pop_front() {
-    Node* node = head_;
+    auto value = front();
     remove_node(head_);
-    auto value = std::move(node->data_);
-    delete node;
     return value;
   }
 
   auto pop_back() {
-    Node* node = tail_;
-    auto value = std::move(node->data_);
-    remove_node(tail_);
-    delete node;
+    auto value = back();
+    remove_node(tail());
     return value;
 
   }
 
   void swap(LinkedList& other) noexcept {
     std::swap(other.head_, head_);
-    std::swap(other.tail_, tail_);
   }
 
   void clear() {
-    while(!empty()) {
-      pop_front();
-    }
+    while(!empty()) { pop_front(); }
   }
 
   // accessors
-  T& front() { return head_->data_; }
-  T& back() { return tail_->data_; }
-
-  // properties
-  std::size_t size() const { return size_; };
-  bool empty() { return (size_ == 0); }
-
- private:
-  void update_head(Node* node) {
-    head_ = node;
-    if(!tail_)  tail_ = head_;
-    ++size_;
+  T& front() {
+    if(empty()) throw std::out_of_range("Underflow");
+    return head_->data_;
   }
 
-  void update_tail(Node* node) {
-    if(!tail_) {
-      update_head(node);
+  T& back() {
+    if(empty()) throw std::out_of_range("Underflow");
+    return tail()->data_;
+  }
+
+  // properties
+  std::size_t size() const {
+    std::size_t size{0};
+    for(Node* cur = head_; cur; cur = cur->next_) { ++size; }
+    return size;
+  }
+
+  bool empty() { return (head_ == nullptr); }
+
+ private:
+
+
+
+  Node* tail() {
+    Node* tail = head_;
+    for(Node* itr = tail; itr; itr = tail->next_) { tail = itr; }
+    return tail;
+  }
+
+  void append_node(Node* node) {
+    if(!head_) {
+      head_ = node;
     } else {
-      tail_->next_ = node;
-      tail_ = node;
-      ++size_;
+      tail()->next_ = node;
     }
   }
 
   void remove_node(Node* which_node) {
-    // underflow check
-    if(empty())
-      throw std::out_of_range("LinkedList underflow!");
-
-    Node* prev = nullptr;
-    Node* next = head_->next_;
-    for(Node* curr{head_}; curr; prev = curr, curr = curr->next_, next = curr->next_) {
-      if(curr == which_node) {
-        if(prev)  prev->next_ = next;
-        // remove node from list
-        --size_;
-        // update head and tail
-        if(!prev) head_ = next;
-        if(!next) tail_ = prev;
-        return;
+    Node* entry;
+    for(Node** cur = &head_; *cur; ) {
+      entry = *cur;
+      if(entry == which_node) {
+        *cur = entry->next_;
+        delete entry;
+      } else {
+        cur = &entry->next_;
       }
     }
-
-    // node not found in list
-    throw std::out_of_range("Node not in LinkedList");
   }
 
  private:
   Node        *head_;
-  Node        *tail_;
-  std::size_t  size_;
 };
 
 } // namespace DS
