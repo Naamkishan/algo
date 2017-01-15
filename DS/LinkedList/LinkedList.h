@@ -39,7 +39,7 @@ class LinkedList {
   }
 
   LinkedList& push_back(const T&& value) {
-    Node *node = new Node(value);
+    Node *node = new Node(std::move(value));
     append_node(node);
     return *this;
   }
@@ -51,7 +51,7 @@ class LinkedList {
   }
 
   LinkedList& push_front(const T&& value) {
-    head_ = new Node(value, head_);
+    head_ = new Node(std::move(value), head_);
     return *this;
   }
 
@@ -94,7 +94,7 @@ class LinkedList {
     return size;
   }
 
-  bool empty() { return (head_ == nullptr); }
+  bool empty() const { return (head_ == nullptr); }
 
  private:
 
