@@ -98,31 +98,27 @@ class LinkedList {
 
  private:
 
-
-
   Node* tail() {
     Node* tail = head_;
-    for(Node* itr = tail; itr; itr = tail->next_) { tail = itr; }
+    if(tail) {
+      for(; tail->next_; tail = tail->next_);
+    }
     return tail;
   }
 
   void append_node(Node* node) {
-    if(!head_) {
-      head_ = node;
-    } else {
-      tail()->next_ = node;
-    }
+    Node** tail = &head_;
+    for(Node* entry; entry = *tail; tail = &entry->next_);
+    *tail = node;
   }
 
-  void remove_node(Node* which_node) {
-    Node* entry;
-    for(Node** cur = &head_; *cur; ) {
-      entry = *cur;
-      if(entry == which_node) {
-        *cur = entry->next_;
-        delete entry;
-      } else {
-        cur = &entry->next_;
+  void remove_node(Node* key) {
+    Node** target = &head_;
+    for(Node* itr; itr = *target; target = &itr->next_) {
+      if(itr == key) {
+        *target = itr->next_;
+        delete itr;
+        return;
       }
     }
   }
