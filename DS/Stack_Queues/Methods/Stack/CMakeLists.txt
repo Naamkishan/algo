@@ -3,6 +3,8 @@ project(Stacks)
 
 set(PROJECT_BINARY "Stacks")
 
+include_directories(../../Include)
+
 set(SOURCE_FILES main.cpp)
 add_executable(${PROJECT_BINARY} ${SOURCE_FILES})
 

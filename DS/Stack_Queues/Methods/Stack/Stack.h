@@ -1,4 +1,4 @@
-#include <list>
+#include <LinkedList.h>
 
 
 template<typename T>
@@ -7,7 +7,7 @@ class Stack {
   Stack(){}
 
   void push(const T&& value) {
-    container_.emplace_back(std::move(value));
+    container_.push_back(std::move(value));
   }
 
   auto pop() {
@@ -20,5 +20,5 @@ class Stack {
   std::size_t size() const { return container_.size(); }
 
  private:
-  std::list<T>  container_;
+  DS::LinkedList<T>  container_;
 };
