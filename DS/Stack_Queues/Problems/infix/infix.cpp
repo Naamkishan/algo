@@ -1,18 +1,25 @@
-#include <cstdlib>
-#include <iostream>
 #include <string>
 
-#include "dijkstra_infix.h"
+#include <gtest/gtest.h>
 
-using namespace std;
+#include "shunting_yard.h"
 
-int main() {
-  std::cout << "Infix Expression Evaluation!" << std::endl;
+TEST(TestInfix, Expression1) {
+  std::string expression("1 + ( ( 2 + 3 ) * ( 4 * 5 ) )");
+  EXPECT_DOUBLE_EQ(dijkstra_infix(expression), 101);
+}
 
-  std::cout << "Evaluating (1 + ( ( 2 + 3 ) * ( 4  * 5 ) ) ): ";
-  std::string expression("(1 +((2+3)*(4*5)))");
+TEST(TestInfix, Expression2) {
+  std::string expression("( 2 * 4 ) + ( 6 - 1 )");
+  EXPECT_DOUBLE_EQ(dijkstra_infix(expression), 13);
+}
 
-  std::cout << dijkstra_infix(expression);
+TEST(TestInfix, Expression3) {
+  std::string expression("1 + 100 * 115 - 20 / 4");
+  EXPECT_DOUBLE_EQ(dijkstra_infix(expression), 11496);
+}
 
-  return EXIT_SUCCESS;
+int main(int argc, char** argv) {
+  ::testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
 }
