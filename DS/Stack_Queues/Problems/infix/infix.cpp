@@ -19,6 +19,12 @@ TEST(TestInfix, Expression3) {
   EXPECT_DOUBLE_EQ(dijkstra_infix(expression), 11496);
 }
 
+TEST(TestInfix, ExponentialExpression) {
+  std::string expression("3 ^ 2");
+  EXPECT_DOUBLE_EQ(dijkstra_infix(expression), 9);
+}
+
+
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();

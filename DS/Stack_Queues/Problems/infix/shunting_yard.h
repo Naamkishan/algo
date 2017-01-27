@@ -2,6 +2,7 @@
 #define ALGO_DIJKSTRA_INFIX_H
 
 #include <cstdlib>
+#include <cmath>
 #include <stdexcept>
 #include <sstream>
 #include <string>
@@ -12,8 +13,10 @@ namespace {
 bool is_operator(const std::string& op) {
   return ((op == "-") || (op == "+") ||
       (op == "*") || (op == "/") || (op == "%") ||
-      (op == "(") || (op == "{") || (op == "[") ||
-      (op == ")") || (op == "}") || (op == "]"));
+      (op == "^") ||
+      (op == "}") || (op == "]")) ||
+      (op == "{") || (op == "[") ||
+      (op == "(") || (op == ")");
 }
 
 
@@ -22,6 +25,7 @@ double evaluate(double val1, double val2, const std::string& op) {
   if(op == "-") return (val1 - val2);
   if(op == "*") return val1 * val2;
   if(op == "/") return (val1 / val2);
+  if(op == "^") return std::pow(val1, val2);
 
   throw std::runtime_error("operator unsupported!");
 }
@@ -34,6 +38,7 @@ double evaluate(double val1, double val2, const std::string& op) {
  * @return      int but throws exception if op passed is not handled
  */
 int priority(const std::string& op) {
+  if(op == "^") return 0x0400;
   if(op == ")") return 0x0310;
   if(op == "(") return 0x0301;
   if(op == "}") return 0x0210;
