@@ -19,7 +19,7 @@ template<typename Iterator,
 void selection_sort(Iterator begin, Iterator end, Compare compare = Compare()) {
   using std::swap;
   Iterator min;
-  for(Iterator itr = begin; itr != end; itr = std::next(itr)) {
+  for(auto itr = begin; itr != end; std::advance(itr, 1)) {
     min = std::min_element(itr, end, compare);
     swap(*min, *itr);
   }

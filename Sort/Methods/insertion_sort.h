@@ -20,7 +20,8 @@ template<typename Iterator,
 void insertion_sort(Iterator begin, Iterator end, Comparator comparator = Comparator()) {
   using std::swap;
 
-  for(Iterator itr = {begin + 1}; itr != end; itr = std::next(itr)) {
+  auto itr = begin;
+  for(std::advance(itr, 1); itr != end; std::advance(itr, 1)) {
     std::rotate(std::upper_bound(begin, itr, *itr), itr, std::next(itr));
   }
 };

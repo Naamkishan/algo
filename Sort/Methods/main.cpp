@@ -1,12 +1,19 @@
+#include <numeric>
 #include <utility>
 #include <gtest/gtest.h>
 #include "selection_sort.h"
 #include "insertion_sort.h"
+#include "shell_sort.h"
+
+namespace {
+  constexpr int SIZE = {100};
+}
 
 TEST(TestSelectionSort, SortedStdArray) {
-  using Array = std::array<int, 5>;
-  Array src{1, 2, 3, 4, 5};
-  Array expected{1, 2, 3, 4, 5};
+  using Array = std::array<int, SIZE>;
+  Array expected;
+  std::iota(expected.begin(), expected.end(), 0);
+  Array src = expected;
 
   sort::selection_sort(src.begin(), src.end());
 
@@ -14,9 +21,11 @@ TEST(TestSelectionSort, SortedStdArray) {
 }
 
 TEST(TestSelectionSort, UnSortedStdArray) {
-  using Array = std::array<int, 5>;
-  Array src{5, 3, 1, 2, 4};
-  Array expected{1, 2, 3, 4, 5};
+  using Array = std::array<int, SIZE>;
+  Array expected;
+  std::iota(expected.begin(), expected.end(), 0);
+  Array src = expected;
+  std::random_shuffle(src.begin(), src.end());
 
   sort::selection_sort(src.begin(), src.end());
 
@@ -44,9 +53,11 @@ TEST(TestSelectionSort, UnSortedArray) {
 
 
 TEST(TestInsertionSort, SortedStdArray) {
-  using Array = std::array<int, 5>;
-  Array src{1, 2, 3, 4, 5};
-  Array expected{1, 2, 3, 4, 5};
+  using Array = std::array<int, SIZE>;
+  Array expected;
+  std::iota(expected.begin(), expected.end(), 0);
+  Array src = expected;
+  std::random_shuffle(src.begin(), src.end());
 
   sort::insertion_sort(src.begin(), src.end());
 
@@ -55,8 +66,10 @@ TEST(TestInsertionSort, SortedStdArray) {
 
 TEST(TestInsertionSort, ReverseSortedStdArray) {
   using Array = std::array<int, 5>;
-  Array src{5, 4, 3, 2, 1};
   Array expected{1, 2, 3, 4, 5};
+
+  Array src = expected;
+  std::random_shuffle(src.begin(), src.end());
 
   sort::insertion_sort(src.begin(), src.end());
 
@@ -64,14 +77,52 @@ TEST(TestInsertionSort, ReverseSortedStdArray) {
 }
 
 TEST(TestInsertionSort, UnSortedArray) {
-  int src[] = {5, 3, 1, 2, 4};
-  int expected[] = {1, 2, 3, 4, 5};
+  using Array = std::array<int, 5>;
+  Array expected{1, 2, 3, 4, 5};
 
-  int end_itr = sizeof(src)/sizeof(int);
+  Array src = expected;
+  std::random_shuffle(src.begin(), src.end());
 
-  sort::insertion_sort(src, src + end_itr);
+  sort::insertion_sort(std::begin(src), std::end(src));
 
-  ASSERT_TRUE(std::equal(src, src + end_itr, expected));
+  ASSERT_EQ(src, expected);
+}
+
+TEST(TestShellSort, SortedStdArray) {
+  using Array = std::array<int, 7>;
+  Array expected;
+  std::iota(expected.begin(), expected.end(), 0);
+  Array src = expected;
+
+  sort::shell_sort(src.begin(), src.end());
+
+  ASSERT_EQ(src, expected);
+}
+
+TEST(TestShellSort, ReverseSortedStdArray) {
+  using Array = std::array<int, 5>;
+  Array expected;
+  std::iota(expected.begin(), expected.end(), 0);
+
+  Array src;
+  std::iota(src.begin(), src.end(), 0);
+  std::reverse(src.begin(), src.end());
+
+  sort::shell_sort(src.begin(), src.end());
+
+  ASSERT_EQ(src, expected);
+}
+
+TEST(TestShellSort, UnSortedArray) {
+  using Array = std::array<int, SIZE>;
+  Array expected;
+  std::iota(expected.begin(), expected.end(), 0);
+  Array src = expected;
+  std::random_shuffle(src.begin(), src.end());
+
+  sort::shell_sort(src.begin(), src.end());
+
+  ASSERT_EQ(src, expected);
 }
 
 
