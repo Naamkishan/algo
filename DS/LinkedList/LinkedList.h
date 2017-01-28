@@ -98,11 +98,11 @@ class LinkedList {
 
  private:
 
-
-
   Node* tail() {
     Node* tail = head_;
-    for(Node* itr = tail; itr; itr = tail->next_) { tail = itr; }
+    if(tail) {
+      for(; tail->next_; tail = tail->next_);
+    }
     return tail;
   }
 

@@ -6,6 +6,10 @@ class Stack {
  public:
   Stack(){}
 
+  void push(const T& value) {
+    container_.push_back(value);
+  }
+
   void push(const T&& value) {
     container_.push_back(std::move(value));
   }
