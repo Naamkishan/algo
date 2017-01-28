@@ -18,3 +18,14 @@ Some well know problems are also part of this project.
             *   Infix Expression Evaluation:
                 *   Dijsktraa's Two Stack - The Shunting Yard Algorithm
                
+* **Sorting Algorithms**
+    -
+    * **Elementary Sorts**
+        * Methods
+            -
+            * Selection Sort
+            * Insertion Sort
+            * Shell Sort
+        * Problems
+            -
+            
