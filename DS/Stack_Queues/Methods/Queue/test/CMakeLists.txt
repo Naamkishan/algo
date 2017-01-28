@@ -5,7 +5,6 @@ set(PROJECT_BINARY "TestQueue")
 
 FIND_PACKAGE (Threads REQUIRED)
 
-include_directories($ENV{HOME}/3rdParty/include ..)
 link_directories($ENV{HOME}/3rdParty/libs)
 
 list(APPEND LIBRARIES "libgtest.a")
