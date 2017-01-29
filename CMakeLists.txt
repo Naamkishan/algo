@@ -16,4 +16,5 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 add_subdirectory(DS)
 add_subdirectory(Search)
 add_subdirectory(Sort)
+add_subdirectory(Problems)
 
