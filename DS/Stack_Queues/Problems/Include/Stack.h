@@ -1,1 +1,0 @@
-../../Methods/Stack/Stack.h

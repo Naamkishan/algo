@@ -7,9 +7,6 @@ set(PROJECT_BINARY "infix")
 
 FIND_PACKAGE (Threads REQUIRED)
 
-include_directories(../Include)
-include_directories($ENV{HOME}/3rdParty/include ..)
-
 link_directories($ENV{HOME}/3rdParty/libs)
 
 list(APPEND LIBRARIES "libgtest.a")
