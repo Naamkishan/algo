@@ -28,4 +28,6 @@ Some well know problems are also part of this project.
             * Shell Sort
         * Problems
             -
+            * Shuffling
+            * Convex Hull
             

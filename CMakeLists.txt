@@ -5,7 +5,7 @@ project(algo)
 
 set(CMAKE_CXX_STANDARD 14)
 
-include_directories($ENV{HOME}/3rdParty/include)
+include_directories($ENV{HOME}/3rdParty/include include)
 
 set(CMAKE_BINARY_DIR ${CMAKE_CURRENT_SOURCE_DIR}/bin)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
