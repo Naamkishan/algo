@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
-project(ElementarySorts)
+project(Sorting)
 
-set(PROJECT_BINARY "ElementarySorts")
+set(PROJECT_BINARY "Sorting")
 
 FIND_PACKAGE (Threads REQUIRED)
 

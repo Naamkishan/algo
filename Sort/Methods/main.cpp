@@ -5,9 +5,11 @@
 #include "insertion_sort.h"
 #include "shell_sort.h"
 
+
 namespace {
   constexpr int SIZE = {100};
 }
+
 
 TEST(TestSelectionSort, SortedStdArray) {
   using Array = std::array<int, SIZE>;
@@ -15,7 +17,7 @@ TEST(TestSelectionSort, SortedStdArray) {
   std::iota(expected.begin(), expected.end(), 0);
   Array src = expected;
 
-  sort::selection_sort(src.begin(), src.end());
+  algo::sort::selection_sort(src.begin(), src.end());
 
   ASSERT_EQ(src, expected);
 }
@@ -27,7 +29,7 @@ TEST(TestSelectionSort, UnSortedStdArray) {
   Array src = expected;
   std::random_shuffle(src.begin(), src.end());
 
-  sort::selection_sort(src.begin(), src.end());
+  algo::sort::selection_sort(src.begin(), src.end());
 
   ASSERT_EQ(src, expected);
 }
@@ -37,7 +39,7 @@ TEST(TestSelectionSort, ReverseSortedStdArray) {
   Array src{5, 4, 3, 2, 1};
   Array expected{1, 2, 3, 4, 5};
 
-  sort::selection_sort(src.begin(), src.end());
+  algo::sort::selection_sort(src.begin(), src.end());
 
   ASSERT_EQ(src, expected);
 }
@@ -46,7 +48,7 @@ TEST(TestSelectionSort, UnSortedArray) {
   int src[] = {5, 3, 1, 2, 4};
   int expected[] = {1, 2, 3, 4, 5};
 
-  sort::selection_sort(std::begin(src), std::end(src));
+  algo::sort::selection_sort(std::begin(src), std::end(src));
 
   ASSERT_TRUE(std::equal(std::begin(src), std::end(src), expected));
 }
@@ -59,7 +61,7 @@ TEST(TestInsertionSort, SortedStdArray) {
   Array src = expected;
   std::random_shuffle(src.begin(), src.end());
 
-  sort::insertion_sort(src.begin(), src.end());
+  algo::sort::insertion_sort(src.begin(), src.end());
 
   ASSERT_EQ(src, expected);
 }
@@ -71,7 +73,7 @@ TEST(TestInsertionSort, ReverseSortedStdArray) {
   Array src = expected;
   std::random_shuffle(src.begin(), src.end());
 
-  sort::insertion_sort(src.begin(), src.end());
+  algo::sort::insertion_sort(src.begin(), src.end());
 
   ASSERT_EQ(src, expected);
 }
@@ -83,7 +85,7 @@ TEST(TestInsertionSort, UnSortedArray) {
   Array src = expected;
   std::random_shuffle(src.begin(), src.end());
 
-  sort::insertion_sort(std::begin(src), std::end(src));
+  algo::sort::insertion_sort(std::begin(src), std::end(src));
 
   ASSERT_EQ(src, expected);
 }
@@ -94,7 +96,7 @@ TEST(TestShellSort, SortedStdArray) {
   std::iota(expected.begin(), expected.end(), 0);
   Array src = expected;
 
-  sort::shell_sort(src.begin(), src.end());
+  algo::sort::shell_sort(src.begin(), src.end());
 
   ASSERT_EQ(src, expected);
 }
@@ -108,7 +110,7 @@ TEST(TestShellSort, ReverseSortedStdArray) {
   std::iota(src.begin(), src.end(), 0);
   std::reverse(src.begin(), src.end());
 
-  sort::shell_sort(src.begin(), src.end());
+  algo::sort::shell_sort(src.begin(), src.end());
 
   ASSERT_EQ(src, expected);
 }
@@ -120,7 +122,7 @@ TEST(TestShellSort, UnSortedArray) {
   Array src = expected;
   std::random_shuffle(src.begin(), src.end());
 
-  sort::shell_sort(src.begin(), src.end());
+  algo::sort::shell_sort(src.begin(), src.end());
 
   ASSERT_EQ(src, expected);
 }

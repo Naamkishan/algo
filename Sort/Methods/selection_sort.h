@@ -4,6 +4,8 @@
 #include <algorithm>
 #include <iterator>
 
+namespace algo {
+
 namespace sort {
 
 /**
@@ -14,19 +16,19 @@ namespace sort {
  */
 template<typename Iterator,
     typename Compare = std::less<
-        typename std::iterator_traits<Iterator>::value_type >
-    >
+        typename std::iterator_traits<Iterator>::value_type>
+>
 void selection_sort(Iterator begin, Iterator end, Compare compare = Compare()) {
   using std::swap;
   Iterator min;
-  for(auto itr = begin; itr != end; std::advance(itr, 1)) {
+  for (auto itr = begin; itr != end; std::advance(itr, 1)) {
     min = std::min_element(itr, end, compare);
     swap(*min, *itr);
   }
 };
 
+} // alog::sort namespace
 
-
-} // sort namespace
+} // algo namespace
 
 #endif //ALGO_SELECTION_SORT_H
