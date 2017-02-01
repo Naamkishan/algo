@@ -141,6 +141,16 @@ TEST(TestMergeSort, UnSortedStdArraySmall) {
   ASSERT_EQ(src, expected);
 }
 
+TEST(TestInplaceMergeSort, UnSortedStdArraySmall) {
+  using Array = std::array<int, 7>;
+  Array src{5, 3, 6, 8, 1, 2, 7};
+  Array expected{1, 2, 3, 5, 6, 7, 8};
+
+  algo::sort::inplace_merge_sort(src.begin(), src.end());
+
+  ASSERT_EQ(src, expected);
+}
+
 
 int main(int argc, char** argv) {
 
