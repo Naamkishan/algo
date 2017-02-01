@@ -24,7 +24,7 @@ void insertion_sort(Iterator begin, Iterator end, Comparator comparator = Compar
 
   auto itr = begin;
   for (std::advance(itr, 1); itr != end; std::advance(itr, 1)) {
-    std::rotate(std::upper_bound(begin, itr, *itr), itr, std::next(itr));
+    std::rotate(std::upper_bound(begin, itr, *itr, comparator), itr, std::next(itr));
   }
 };
 
