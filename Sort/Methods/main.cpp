@@ -4,6 +4,7 @@
 #include "selection_sort.h"
 #include "insertion_sort.h"
 #include "shell_sort.h"
+#include "merge_sort.h"
 
 
 namespace {
@@ -123,6 +124,19 @@ TEST(TestShellSort, UnSortedArray) {
   std::random_shuffle(src.begin(), src.end());
 
   algo::sort::shell_sort(src.begin(), src.end());
+
+  ASSERT_EQ(src, expected);
+}
+
+
+TEST(TestMergeSort, UnSortedStdArraySmall) {
+  using Array = std::array<int, SIZE>;
+  Array expected;
+  std::iota(expected.begin(), expected.end(), 0);
+  Array src = expected;
+  std::random_shuffle(src.begin(), src.end());
+
+  algo::sort::merge_sort(src.begin(), src.end());
 
   ASSERT_EQ(src, expected);
 }
