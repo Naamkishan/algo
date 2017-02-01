@@ -1,5 +1,5 @@
-#include <numeric>
 #include <list>
+#include <numeric>
 #include <utility>
 #include <vector>
 
@@ -82,18 +82,17 @@ TEST(TestMergeSort, UnSortedMultipleVectors) {
   }
 }
 
-TEST(TestMergeSort, UnSortedMultipleList) {
-  for(std::size_t size = {1}; size < SIZE; size *= 2) {
-    std::list<int> expected(size);
-    std::iota(expected.begin(), expected.end(), 0);
-    std::list<int> src(expected);
-    std::iota(src.begin(), src.end(), 0);
-
-
-    algo::sort::merge_sort(src.begin(), src.end());
-
-    ASSERT_EQ(src, expected);
+TEST(TestMergeSort, UnSortedList) {
+  std::list<int> expected;
+  std::list<int> src;
+  for(int i = {1}; i < 10; ++i) {
+    expected.push_back(i);
+    src.push_front(i);
   }
+
+  algo::sort::merge_sort(src.begin(), src.end());
+
+  ASSERT_EQ(src, expected);
 }
 
 
