@@ -21,7 +21,7 @@ TEST(TestAutoLoan, Tenure68Price6800Emi100) {
 
   double actual_rate = AutoLoan::interest_rate(price, monthly_payment, loan_term);
 
-  EXPECT_DOUBLE_EQ(expected_rate, actual_rate);
+  EXPECT_TRUE(AutoLoan::is_essentially_equal(expected_rate, actual_rate));
 }
 
 TEST(TestAutoLoan, Tenure4Price2000Emi510) {
@@ -33,7 +33,7 @@ TEST(TestAutoLoan, Tenure4Price2000Emi510) {
 
   double actual_rate = AutoLoan::interest_rate(price, monthly_payment, loan_term);
 
-  EXPECT_DOUBLE_EQ(expected_rate, actual_rate);
+  EXPECT_TRUE(AutoLoan::is_essentially_equal(expected_rate, actual_rate));
 }
 
 
@@ -46,7 +46,7 @@ TEST(TestAutoLoan, Tenure48Price15000Emi365) {
 
   double actual_rate = AutoLoan::interest_rate(price, monthly_payment, loan_term);
 
-  EXPECT_DOUBLE_EQ(expected_rate, actual_rate);
+  EXPECT_TRUE(AutoLoan::is_essentially_equal(expected_rate, actual_rate));
 }
 
 
