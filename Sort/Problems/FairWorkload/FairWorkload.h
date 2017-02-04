@@ -3,7 +3,6 @@
 
 #include <algorithm>
 #include <iterator>
-#include <numeric>
 
 
 /**
@@ -11,30 +10,39 @@
  * @param begin         : start of range
  * @param end           : end of range
  * @param workers       : number of workers in amongst which work is to be divided
- * @param comparator    : Functor for comparing values; default to std::less
- * @param accumulator   : Functor for accumulating values; defaults to std::plus
  * @return
  */
-template<typename ForwardIterator,
-    typename Comparator = std::less<
-        std::iterator_traits<ForwardIterator>::value_type>,  // comparator predicate
-    typename Accumulator = std::plus<
-        std::iterator_traits<ForwardIterator>::value_type>  // comparator predicate
->
+template<typename ForwardIterator>
 auto get_most_work(ForwardIterator begin, ForwardIterator end,    // range of container
-                   std::iterator_traits<ForwardIterator>::value_type workers,
-                   Comparator comparator = Comparator(),
-                   Accumulator accumulator = Accumulator()) {
-  using DistanceType = typename std::iterator_traits<ForwardIterator>::difference_type;
-  using Type = std::iterator_traits<ForwardIterator>::value_type;
+                   unsigned int workers) {
+  using Type = typename std::iterator_traits<ForwardIterator>::value_type;
 
-  ForwardIterator low = std::max_element(begin, end);
-  Type high = std::accumulate(begin, end, Type{}, accumulator);
+  Type cur_max_load = *std::max_element(begin, end);
+  Type high_max_load = std::accumulate(begin, end, 0);
 
-  while(*low < high) {
-    DistanceType mid = std::distance(begin, end) >> 1;  // right shift >> divide by 2
+  while(cur_max_load < high_max_load) {
+    Type proposed_max_load = cur_max_load + ((high_max_load - cur_max_load)>>1); // using right shift to divide by 2
 
+    Type required_workers{1}, current_load{0};
+
+    for(ForwardIterator itr{begin}; itr != end; std::advance(itr, 1)) {
+      if((current_load + *itr) <= proposed_max_load) {
+        current_load += *itr;
+      } else {
+        // assign it to the next worker
+        ++required_workers;
+        current_load = *itr;
+      }
+    }
+
+    if(required_workers <= workers) {
+      high_max_load = proposed_max_load;
+    } else {
+      cur_max_load = (proposed_max_load + 1);
+    }
   }
+
+  return cur_max_load;
 }
 
 
