@@ -6,13 +6,6 @@
 
 namespace AutoLoan {
 
-/**
- * @brief       Knunth's algorithm for determining if the two floats are essentially equal
- * @param dval1
- * @param dval2
- * @param tolerance     : the allowed deviance
- * @return  boolean
- */
 bool is_essentially_equal(const double& a, const double& b, const double& tolerance = 1e-9) {
   return (std::fabs(a - b) <= tolerance);
 }
