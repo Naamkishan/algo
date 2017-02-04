@@ -10,7 +10,7 @@ TEST(TestFairWorkload, Cabs1Wokers1) {
   std::array<int, 2> cabinets = { 1, 1 };
   const int workers = 1;
 
-  const int max_cabs_per_worker = {1};
+  const int max_cabs_per_worker = {2};
   const int act_cabs_per_worker = get_most_work(cabinets.begin(), cabinets.end(), workers);
 
   ASSERT_EQ(max_cabs_per_worker, act_cabs_per_worker);
