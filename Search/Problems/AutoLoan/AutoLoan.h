@@ -60,33 +60,6 @@ double interest_rate(double price,
   return monthly_int;
 }
 
-#if 0
-double interest_rate(double price, double monthly_payment, int loan_term) {
-  double low_int = {0.00};
-  double high_int = {100.00};
-  double mid_int = {0};
-  double amount;
-
-  while((high_int - low_int) > 1e-12) {
-    mid_int = low_int + ((high_int - low_int) / 2);
-    double monthly_int = mid_int/12;
-    amount = {price};
-    for(int term{loan_term}; term > 0; --term) {
-      amount += (amount * (monthly_int/12));
-      amount -= monthly_payment;
-    }
-
-    if(amount > 1e-12) {
-      high_int = mid_int;
-    } else {
-      low_int = (mid_int + 1);
-    }
-  }
-
-  throw std::logic_error("Function not implemented!");
-}
-#endif
-
 
 } // namespace AutoLoan
 
