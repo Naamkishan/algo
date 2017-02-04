@@ -7,6 +7,12 @@ Some well know problems are also part of this project.
     -
     * UnionFind
     * Binary Search
+        * Problems
+            -
+            * FairWorkload
+            * AutoLoan
+            * SortEstimate
+        
     
 * **DS - Data Structures**
     -
