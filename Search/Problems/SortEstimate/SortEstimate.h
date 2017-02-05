@@ -34,18 +34,18 @@ double how_many(int c, int time, double tolerance = 1e-9) {
 
   double numbers{1.00};   // current number of integers being processed
   double high_num{2000000000};  // max number of integers that can be processed
-  double mid;
+  double incr;
   double processing_time;
 
-  while(!is_essentially_equal(numbers, high_num, tolerance)) {
-    mid = numbers + ((high_num - numbers)/2);
-    processing_time = get_processing_time(c, mid);
+  do {
+    incr = (high_num - numbers)/2;
+    processing_time = get_processing_time(c, numbers + incr);
     if(processing_time < time) {
-      numbers = mid;  // can process more integers - we still have some leeway
+      numbers += incr;  // can process more integers - we still have some leeway
     } else {
-      high_num = mid;
+      high_num = (numbers + incr);
     }
-  }
+  } while(!is_essentially_equal(numbers, numbers + incr, tolerance));
 
   return numbers;
 
