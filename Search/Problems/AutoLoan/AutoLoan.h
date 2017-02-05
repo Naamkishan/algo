@@ -12,8 +12,6 @@ bool is_essentially_equal(const double& a, const double& b, const double& tolera
 
 double remaining_principal(double principal, double monthly_payment, int term, double interest) {
   double monthly_interest = interest/1200;  // convert the annualised interest into monthly.
-  if((principal * monthly_interest) > monthly_payment)
-    return 1;
 
   for(int i{0}; i < term; ++i)
     principal = principal * (1 + monthly_interest) - monthly_payment;
