@@ -38,12 +38,12 @@ double interest_rate(double price,
                      double monthly_payment,
                      int loan_term,
                      double tolerance = 1e-9) {
-  double price_left_to_pay{1.00}; // initial value to ensure that the loops does not get terminated by default
+  double price_left_to_pay;
   double low_int = {0.0};
-  double monthly_int = {0.00};
+  double monthly_int;
   double high_int = {100.00};
 
-  while(!Utility::is_essentially_equal(price_left_to_pay, 0.00, tolerance)) {
+  do {
     monthly_int = low_int + (high_int - low_int)/2;
     price_left_to_pay = remaining_principal(price, monthly_payment, loan_term, monthly_int);
     // we have undershot the interest rate
@@ -52,7 +52,7 @@ double interest_rate(double price,
     } else {
       high_int = monthly_int;
     }
-  }
+  } while(!Utility::is_essentially_equal(price_left_to_pay, 0.00, tolerance));
 
   return monthly_int;
 }
