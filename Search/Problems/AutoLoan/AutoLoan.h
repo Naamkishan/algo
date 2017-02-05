@@ -11,8 +11,13 @@ namespace AutoLoan {
 double remaining_principal(double principal, double monthly_payment, int term, double interest) {
   double monthly_interest = interest/1200;  // convert the annualised interest into monthly.
 
+  // no need to proceed if the interest part itself is greater than monthly payment
+  if((principal * monthly_interest) > monthly_payment)
+    return 1;
+
   for(int i{0}; i < term; ++i) {
     principal = principal * (1 + monthly_interest) - monthly_payment;
+    // the principal is already negative
     if(principal < 0)
       return principal;
   }
