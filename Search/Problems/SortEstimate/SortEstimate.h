@@ -4,6 +4,8 @@
 #include <cmath>
 #include <exception>
 
+#include <utility.h>
+
 namespace SortEstimate {
 
 /**
@@ -39,7 +41,7 @@ double how_many(int c, int time, double tolerance = 1e-9) {
     } else {
       high_num = (numbers + incr);
     }
-  } while(incr >= tolerance);
+  } while(!Utility::is_essentially_equal(numbers, numbers + incr, tolerance));
 
   return numbers;
 
