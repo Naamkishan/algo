@@ -1,6 +1,11 @@
 #include <gtest/gtest.h>
 #include "AutoLoan.h"
 
+namespace {
+const double TOLERANCE = 1e-9;
+}
+
+
 /**
  * @details     Autoloan: Calculate interest rate
  *
@@ -19,9 +24,9 @@ TEST(TestAutoLoan, Tenure68Price6800Emi100) {
 
   double expected_rate = 0.0;
 
-  double actual_rate = AutoLoan::interest_rate(price, monthly_payment, loan_term);
+  double actual_rate = AutoLoan::interest_rate(price, monthly_payment, loan_term, TOLERANCE);
 
-  EXPECT_TRUE(AutoLoan::is_essentially_equal(expected_rate, actual_rate));
+  EXPECT_NEAR(expected_rate, actual_rate, TOLERANCE);
 }
 
 TEST(TestAutoLoan, Tenure4Price2000Emi510) {
@@ -31,9 +36,9 @@ TEST(TestAutoLoan, Tenure4Price2000Emi510) {
 
   double expected_rate = 9.56205462458368;
 
-  double actual_rate = AutoLoan::interest_rate(price, monthly_payment, loan_term);
+  double actual_rate = AutoLoan::interest_rate(price, monthly_payment, loan_term, TOLERANCE);
 
-  EXPECT_TRUE(AutoLoan::is_essentially_equal(expected_rate, actual_rate));
+  EXPECT_NEAR(expected_rate, actual_rate, TOLERANCE);
 }
 
 
@@ -44,9 +49,9 @@ TEST(TestAutoLoan, Tenure48Price15000Emi365) {
 
   double expected_rate = 7.687856394581649;
 
-  double actual_rate = AutoLoan::interest_rate(price, monthly_payment, loan_term);
+  double actual_rate = AutoLoan::interest_rate(price, monthly_payment, loan_term, TOLERANCE);
 
-  EXPECT_TRUE(AutoLoan::is_essentially_equal(expected_rate, actual_rate));
+  EXPECT_NEAR(expected_rate, actual_rate, TOLERANCE);
 }
 
 

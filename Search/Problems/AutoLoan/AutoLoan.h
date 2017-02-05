@@ -4,17 +4,18 @@
 #include <cmath>
 #include <exception>
 
-namespace AutoLoan {
+#include <utility.h>
 
-bool is_essentially_equal(const double& a, const double& b, const double& tolerance = 1e-9) {
-  return (std::fabs(a - b) <= tolerance);
-}
+namespace AutoLoan {
 
 double remaining_principal(double principal, double monthly_payment, int term, double interest) {
   double monthly_interest = interest/1200;  // convert the annualised interest into monthly.
 
-  for(int i{0}; i < term; ++i)
+  for(int i{0}; i < term; ++i) {
     principal = principal * (1 + monthly_interest) - monthly_payment;
+    if(principal < 0)
+      return principal;
+  }
 
   return principal;
 }
@@ -37,7 +38,7 @@ double interest_rate(double price,
   double monthly_int = {0.00};
   double high_int = {100.00};
 
-  while(!is_essentially_equal(price_left_to_pay, 0.00, tolerance)) {
+  while(!Utility::is_essentially_equal(price_left_to_pay, 0.00, tolerance)) {
     monthly_int = low_int + (high_int - low_int)/2;
     price_left_to_pay = remaining_principal(price, monthly_payment, loan_term, monthly_int);
     // we have undershot the interest rate
