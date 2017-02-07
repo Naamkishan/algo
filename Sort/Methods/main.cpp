@@ -98,15 +98,16 @@ TEST(TestMergeSort, UnSortedList) {
 
 
 TEST(TestBottomupMergeSort, UnSortedVector) {
-  constexpr int size = {10};
-  std::vector<int> expected(size);
-  std::iota(expected.begin(), expected.end(), 0);
-  std::vector<int> src(expected);
-  std::random_shuffle(src.begin(), src.end());
+  for(std::size_t size = {1}; size < SIZE; size *= 2) {
+    std::vector<int> expected(size);
+    std::iota(expected.begin(), expected.end(), 0);
+    std::vector<int> src(expected);
+    std::random_shuffle(src.begin(), src.end());
 
-  algo::sort::bottom_out_merge_sort(src.begin(), src.end());
+    algo::sort::bottom_out_merge_sort(src.begin(), src.end());
 
-  ASSERT_EQ(src, expected);
+    ASSERT_EQ(src, expected);
+  }
 }
 
 
