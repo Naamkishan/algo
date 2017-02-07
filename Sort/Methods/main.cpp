@@ -97,7 +97,7 @@ TEST(TestMergeSort, UnSortedList) {
 }
 
 
-TEST(TestBottomupMergeSort, UnSortedVector) {
+TEST(TestBottomupMergeSort, UnSortedMultiVectors) {
   for(std::size_t size = {1}; size < SIZE; size *= 2) {
     std::vector<int> expected(size);
     std::iota(expected.begin(), expected.end(), 0);
@@ -108,6 +108,19 @@ TEST(TestBottomupMergeSort, UnSortedVector) {
 
     ASSERT_EQ(src, expected);
   }
+}
+
+TEST(TestBottomupMergeSort, UnSortedList) {
+  std::list<int> expected;
+  std::list<int> src;
+  for(int i = {1}; i < 10; ++i) {
+    expected.push_back(i);
+    src.push_front(i);
+  }
+
+  algo::sort::bottom_out_merge_sort(src.begin(), src.end());
+
+  ASSERT_EQ(src, expected);
 }
 
 
