@@ -9,10 +9,11 @@
 #include "insertion_sort.h"
 #include "shell_sort.h"
 #include "merge_sort.h"
+#include "bottom_merge_sort.h"
 
 
 namespace {
-  constexpr int SIZE = {8096};
+  constexpr int SIZE = {8095};
 }
 
 
@@ -28,7 +29,7 @@ TEST(TestSelectionSort, SortedStdArray) {
 }
 
 TEST(TestSelectionSort, UnSortedMultipleVectors) {
-  for(std::size_t size = {1}; size < SIZE; size *= 2) {
+  for(std::size_t size = {1}; size < SIZE; size <<= 1) {
     std::vector<int> expected(size);
     std::iota(expected.begin(), expected.end(), 0);
     std::vector<int> src(expected);
@@ -42,7 +43,7 @@ TEST(TestSelectionSort, UnSortedMultipleVectors) {
 
 
 TEST(TestInsertionSort, UnSortedMultipleVectors) {
-  for(std::size_t size = {1}; size < SIZE; size *= 2) {
+  for(std::size_t size = {1}; size < SIZE; size <<= 1) {
     std::vector<int> expected(size);
     std::iota(expected.begin(), expected.end(), 0);
     std::vector<int> src(expected);
@@ -56,7 +57,7 @@ TEST(TestInsertionSort, UnSortedMultipleVectors) {
 
 
 TEST(TestShellSort, UnSortedMultipleVectors) {
-  for(std::size_t size = {1}; size < SIZE; size *= 2) {
+  for(std::size_t size = {1}; size < SIZE; size <<= 1) {
     std::vector<int> expected(size);
     std::iota(expected.begin(), expected.end(), 0);
     std::vector<int> src(expected);
@@ -70,7 +71,7 @@ TEST(TestShellSort, UnSortedMultipleVectors) {
 
 
 TEST(TestMergeSort, UnSortedMultipleVectors) {
-  for(std::size_t size = {1}; size < SIZE; size *= 2) {
+  for(std::size_t size = {1}; size < SIZE; size <<= 1) {
     std::vector<int> expected(size);
     std::iota(expected.begin(), expected.end(), 0);
     std::vector<int> src(expected);
@@ -85,12 +86,39 @@ TEST(TestMergeSort, UnSortedMultipleVectors) {
 TEST(TestMergeSort, UnSortedList) {
   std::list<int> expected;
   std::list<int> src;
-  for(int i = {1}; i < 10; ++i) {
+  for(int i = {1}; i < 8095; ++i) {
     expected.push_back(i);
     src.push_front(i);
   }
 
   algo::sort::merge_sort(src.begin(), src.end());
+
+  ASSERT_EQ(src, expected);
+}
+
+
+TEST(TestBottomupMergeSort, UnSortedMultiVectors) {
+  for(std::size_t size = {1}; size < SIZE; size <<= 1) {
+    std::vector<int> expected(size);
+    std::iota(expected.begin(), expected.end(), 0);
+    std::vector<int> src(expected);
+    std::random_shuffle(src.begin(), src.end());
+
+    algo::sort::bottom_out_merge_sort(src.begin(), src.end());
+
+    ASSERT_EQ(src, expected);
+  }
+}
+
+TEST(TestBottomupMergeSort, UnSortedList) {
+  std::list<int> expected;
+  std::list<int> src;
+  for(int i = {1}; i < 8095; ++i) {
+    expected.push_back(i);
+    src.push_front(i);
+  }
+
+  algo::sort::bottom_out_merge_sort(src.begin(), src.end());
 
   ASSERT_EQ(src, expected);
 }

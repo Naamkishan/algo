@@ -36,4 +36,8 @@ Some well know problems are also part of this project.
             -
             * Shuffling
             * Convex Hull
-            
+    * **Merge Sort**
+        * Methods
+            -
+            * Recursive merge
+            * Bottom Up Merge Sort - iterative merge
