@@ -6,6 +6,16 @@
 #include <gtest/gtest.h>
 #include "FairWorkload.h"
 
+TEST(TestFairWorkload, Cabs1Wokers1) {
+  std::array<int, 2> cabinets = { 1, 1 };
+  const int workers = 1;
+
+  const int max_cabs_per_worker = {2};
+  const int act_cabs_per_worker = get_most_work(cabinets.begin(), cabinets.end(), workers);
+
+  ASSERT_EQ(max_cabs_per_worker, act_cabs_per_worker);
+}
+
 
 TEST(TestFairWorkload, Cabs9Wokers3) {
   std::array<int, 9> cabinets = { 10, 20, 30, 40, 50, 60, 70, 80, 90 };
