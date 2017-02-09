@@ -31,22 +31,27 @@ void bottom_out_merge_sort(ForwardIterator begin, ForwardIterator end,  // the r
   auto length = std::distance(begin, end);
   ForwardIterator sl_itr{begin};
 
+  // create a buffer memory
+  VectorT aux(length);
+
+
   // the out loop will create the sublist on which the inner loop will work
   for(DistanceType sl_length = {1}; sl_length < length; sl_length <<= 1) {
     std::advance(sl_itr, sl_length);
     for(DistanceType lo = {0}; lo < (length - sl_length); lo += (sl_length + sl_length)) {
-      auto left = std::next(begin, lo);
-      auto mid = std::next(left, sl_length);
-      VectorT left_aux(left, mid);
-      VectorT right_aux(mid,
-                        std::next(
-                            mid,
-                            std::min(sl_length, length - (std::distance(begin, mid)))
-                        )
-      );
-      std::merge(left_aux.begin(), left_aux.end(),
-                 right_aux.begin(), right_aux.end(),
-                 std::next(begin, lo),
+      // this operation can be length for a non-random access iterator
+      auto sl_right_len = std::min(sl_length,
+                              length - lo - sl_length);
+
+      std::copy(std::next(begin, lo),                             // start range of sublist
+                std::next(begin, lo + sl_length + sl_right_len),  // end range of sublist
+                std::next(aux.begin(), lo));                      // start range of output iterator
+
+      std::merge(std::next(aux.begin(), lo),                              // start range of left buffer
+                 std::next(aux.begin(), lo + sl_length),                  // end range of left buffer
+                 std::next(aux.begin(), lo + sl_length),                  // start range of right buffer
+                 std::next(aux.begin(), lo + sl_length + sl_right_len),   // end range of right buffer
+                 std::next(begin, lo),                                    // start range of output iterator
                  comparator);
     }
   }
