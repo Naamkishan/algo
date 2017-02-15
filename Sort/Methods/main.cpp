@@ -10,12 +10,11 @@
 #include "shell_sort.h"
 #include "merge_sort.h"
 #include "bottom_merge_sort.h"
-
+#include "quick_sort.h"
 
 namespace {
   constexpr int SIZE = {8095};
 }
-
 
 TEST(TestSelectionSort, SortedStdArray) {
   using Array = std::array<int, SIZE>;
@@ -96,6 +95,18 @@ TEST(TestMergeSort, UnSortedList) {
   ASSERT_EQ(src, expected);
 }
 
+TEST(TestBottomupMergeSort, UnSortedList) {
+  std::list<int> expected;
+  std::list<int> src;
+  for(int i = {1}; i < 8095; ++i) {
+    expected.push_back(i);
+    src.push_front(i);
+  }
+
+  algo::sort::bottom_out_merge_sort(src.begin(), src.end());
+
+  ASSERT_EQ(src, expected);
+}
 
 TEST(TestBottomupMergeSort, UnSortedMultiVectors) {
   for(std::size_t size = {1}; size < SIZE; size <<= 1) {
@@ -110,18 +121,41 @@ TEST(TestBottomupMergeSort, UnSortedMultiVectors) {
   }
 }
 
-TEST(TestBottomupMergeSort, UnSortedList) {
-  std::list<int> expected;
-  std::list<int> src;
-  for(int i = {1}; i < 8095; ++i) {
-    expected.push_back(i);
-    src.push_front(i);
+TEST(TestQuickSort, UnSortedMultiVectors) {
+  for(std::size_t size = {1}; size < SIZE; size <<= 1) {
+    std::vector<int> expected(size);
+    std::iota(expected.begin(), expected.end(), 0);
+    std::vector<int> src(expected);
+    std::random_shuffle(src.begin(), src.end());
+
+    algo::sort::quick_sort(src.begin(), src.end());
+
+    ASSERT_EQ(src, expected);
   }
-
-  algo::sort::bottom_out_merge_sort(src.begin(), src.end());
-
-  ASSERT_EQ(src, expected);
 }
+
+TEST(TestBottomupMergeSort, UnSorted1Million) {
+    std::vector<int> expected(1000000);
+    std::iota(expected.begin(), expected.end(), 0);
+    std::vector<int> src(expected);
+    std::random_shuffle(src.begin(), src.end());
+
+    algo::sort::bottom_out_merge_sort(src.begin(), src.end());
+
+    ASSERT_EQ(src, expected);
+}
+
+TEST(TestQuickSort, UnSorted1Million) {
+    std::vector<int> expected(1000000);
+    std::iota(expected.begin(), expected.end(), 0);
+    std::vector<int> src(expected);
+    std::random_shuffle(src.begin(), src.end());
+
+    algo::sort::quick_sort(src.begin(), src.end());
+
+    ASSERT_EQ(src, expected);
+}
+
 
 
 int main(int argc, char** argv) {
