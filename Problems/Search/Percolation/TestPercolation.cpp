@@ -9,6 +9,7 @@
 #include <sstream>
 #include <string>
 
+#include <boost/filesystem.hpp>
 #include <boost/algorithm/string.hpp>
 #include <gtest/gtest.h>
 
@@ -16,7 +17,23 @@
 
 namespace {
 
-const std::string data_dir{"/home/abhijit/SrcCode/Algorithms/algo/Problems/Search/Percolation/test-data/"};
+/**
+ * @brief   get the data dir location
+ *
+ * However, this function assumes that the target (percolation) is in the following hierarchy:
+ *      ${PROJECT_ROOT}/
+ *          build/
+ *              config/
+ *
+ * @return  absolute path of the data dir
+ */
+std::string get_data_dir() {
+  boost::filesystem::path project_root = boost::filesystem::current_path().parent_path().parent_path();
+  boost::filesystem::path data_dir_path = project_root.append("Problems/Search/Percolation/test-data");
+  return data_dir_path.string();
+}
+
+const std::string data_dir = get_data_dir() + "/";
 
 }
 
