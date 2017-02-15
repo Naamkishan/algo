@@ -2,8 +2,6 @@
 #define ALGO_QUICK_SORT_H
 
 #include <iterator>
-#include <random>
-#include <cmath>
 
 namespace algo {
 
@@ -24,6 +22,7 @@ auto partition_container(InputIterator begin, InputIterator end, Comparator comp
 
   DistanceType length = std::distance(begin, end);
 
+  /*
   std::random_device  rand_dev;
   std::default_random_engine  eng(rand_dev());
   std::uniform_int_distribution<int> int_dist(0, length - 1);
@@ -31,6 +30,8 @@ auto partition_container(InputIterator begin, InputIterator end, Comparator comp
 
   // swap the pivot's value with first element
   std::swap(*begin, *std::next(begin, pivot_loc));
+  */
+
   InputIterator pivot{begin};
 
   // now partition the current list into two using the pivot's value
@@ -78,11 +79,13 @@ template<typename InputIterator,
 >
 void quick_sort(InputIterator begin, InputIterator end, Comparator comparator = Comparator()) {
 
+  //TODO: Random shuffle the container contents before starting out to sort
+
   // sort only if the list has 2 or more elements
   if(std::distance(begin, end) > 1) {
     InputIterator partition = partition_container(begin, end, comparator);
     quick_sort(begin, partition, comparator);
-    quick_sort(partition, end, comparator);
+    quick_sort(std::next(partition), end, comparator);
   }
 };
 
