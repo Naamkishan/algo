@@ -13,30 +13,20 @@ namespace sort {
  * @param end       end of range
  * @return          pivot point
  */
-template<typename InputIterator,
+template<typename ForwardIterator,
     typename Comparator = std::less<
-        typename std::iterator_traits<InputIterator>::value_type>
+        typename std::iterator_traits<ForwardIterator>::value_type>
 >
-auto partition_container(InputIterator begin, InputIterator end, Comparator comparator = Comparator()) {
-  using DistanceType = typename std::iterator_traits<InputIterator>::difference_type;
+auto partition_container(ForwardIterator begin, ForwardIterator end, Comparator comparator = Comparator()) {
+  using DistanceType = typename std::iterator_traits<ForwardIterator>::difference_type;
 
   DistanceType length = std::distance(begin, end);
 
-  /*
-  std::random_device  rand_dev;
-  std::default_random_engine  eng(rand_dev());
-  std::uniform_int_distribution<int> int_dist(0, length - 1);
-  DistanceType pivot_loc = int_dist(eng);
-
-  // swap the pivot's value with first element
-  std::swap(*begin, *std::next(begin, pivot_loc));
-  */
-
-  InputIterator pivot{begin};
+  ForwardIterator pivot{begin};
 
   // now partition the current list into two using the pivot's value
-  InputIterator low{begin};    std::advance(low, 1);
-  InputIterator high{end};    std::advance(high, -1);
+  ForwardIterator low{begin};    std::advance(low, 1);
+  ForwardIterator high{end};    std::advance(high, -1);
 
   // iterate till the low and high pointers do not cross each other
   while(true) {
@@ -73,17 +63,17 @@ auto partition_container(InputIterator begin, InputIterator end, Comparator comp
  * @param end           end of range
  * @param comparator    comparsion function : defaults to std::less
  */
-template<typename InputIterator,
+template<typename ForwardIterator,
     typename Comparator = std::less<
-        typename std::iterator_traits<InputIterator>::value_type>
+        typename std::iterator_traits<ForwardIterator>::value_type>
 >
-void quick_sort(InputIterator begin, InputIterator end, Comparator comparator = Comparator()) {
+void quick_sort(ForwardIterator begin, ForwardIterator end, Comparator comparator = Comparator()) {
 
   //TODO: Random shuffle the container contents before starting out to sort
 
   // sort only if the list has 2 or more elements
   if(std::distance(begin, end) > 1) {
-    InputIterator partition = partition_container(begin, end, comparator);
+    ForwardIterator partition = partition_container(begin, end, comparator);
     quick_sort(begin, partition, comparator);
     quick_sort(std::next(partition), end, comparator);
   }
