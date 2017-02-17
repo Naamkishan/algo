@@ -35,3 +35,4 @@ Some well know problems are also part of this project.
             -
             * Recursive merge
             * Bottom Up Merge Sort - iterative merge
+            * Bubble Sort
