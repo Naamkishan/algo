@@ -13,30 +13,20 @@ namespace sort {
  * @param end       end of range
  * @return          pivot point
  */
-template<typename InputIterator,
+template<typename RandomIter,
     typename Comparator = std::less<
-        typename std::iterator_traits<InputIterator>::value_type>
+        typename std::iterator_traits<RandomIter>::value_type>
 >
-auto partition_container(InputIterator begin, InputIterator end, Comparator comparator = Comparator()) {
-  using DistanceType = typename std::iterator_traits<InputIterator>::difference_type;
+auto partition_container(RandomIter begin, RandomIter end, Comparator comparator = Comparator()) {
+  using DistanceType = typename std::iterator_traits<RandomIter>::difference_type;
 
   DistanceType length = std::distance(begin, end);
 
-  /*
-  std::random_device  rand_dev;
-  std::default_random_engine  eng(rand_dev());
-  std::uniform_int_distribution<int> int_dist(0, length - 1);
-  DistanceType pivot_loc = int_dist(eng);
-
-  // swap the pivot's value with first element
-  std::swap(*begin, *std::next(begin, pivot_loc));
-  */
-
-  InputIterator pivot{begin};
+  auto pivot{begin};
 
   // now partition the current list into two using the pivot's value
-  InputIterator low{begin};    std::advance(low, 1);
-  InputIterator high{end};    std::advance(high, -1);
+  auto low{begin};     std::advance(low, 1);
+  auto high{end};      std::advance(high, -1);
 
   // iterate till the low and high pointers do not cross each other
   while(true) {
@@ -51,7 +41,7 @@ auto partition_container(InputIterator begin, InputIterator end, Comparator comp
      *    (ii) high has crossed low pointer
      */
     for(; high != pivot; std::advance(high, -1)) {
-      if(comparator(*high, *pivot))   break;
+      if(!comparator(*pivot, *high))   break;
     }
 
     // whenever pointers cross break out
@@ -73,21 +63,44 @@ auto partition_container(InputIterator begin, InputIterator end, Comparator comp
  * @param end           end of range
  * @param comparator    comparsion function : defaults to std::less
  */
-template<typename InputIterator,
+template<typename RandomIter,
     typename Comparator = std::less<
-        typename std::iterator_traits<InputIterator>::value_type>
+        typename std::iterator_traits<RandomIter>::value_type>
 >
-void quick_sort(InputIterator begin, InputIterator end, Comparator comparator = Comparator()) {
+void quick_sort(RandomIter begin, RandomIter end, Comparator comparator = Comparator()) {
 
   //TODO: Random shuffle the container contents before starting out to sort
 
   // sort only if the list has 2 or more elements
   if(std::distance(begin, end) > 1) {
-    InputIterator partition = partition_container(begin, end, comparator);
+    auto partition = partition_container(begin, end, comparator);
     quick_sort(begin, partition, comparator);
     quick_sort(std::next(partition), end, comparator);
   }
 };
+
+namespace using_std {
+
+template<typename RandomIter,
+    typename Comparator  = std::less<
+        typename std::iterator_traits<RandomIter>::value_type>
+>
+void quick_sort(RandomIter begin, RandomIter end, Comparator comparator = Comparator()) {
+  if(begin == end)  return;
+
+  auto pivot = *std::next(begin, std::distance(begin, end) >> 1);
+  auto left_end = std::partition(begin,
+                                 end,
+                                 [=](const auto& elem) { return comparator(elem, pivot); });
+  auto right = std::partition(left_end,
+                              end,
+                              [=](const auto& elem) { return !comparator(pivot, elem); });
+
+  quick_sort(begin, left_end);
+  quick_sort(right, end);
+}
+
+} // namespace algo::sort::using_std
 
 } // namespace algo::sort
 
