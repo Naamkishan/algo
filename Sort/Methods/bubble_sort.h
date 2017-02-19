@@ -1,5 +1,5 @@
-#ifndef ALGO_SELECTION_SORT_H
-#define ALGO_SELECTION_SORT_H
+#ifndef ALGO_BUBBLE_SORT_H
+#define ALGO_BUBBLE_SORT_H
 
 #include <algorithm>
 #include <iterator>
@@ -31,4 +31,4 @@ void bubble_sort(Iterator begin, Iterator end, Compare compare = Compare()) {
 
 } // algo namespace
 
-#endif //ALGO_SELECTION_SORT_H
+#endif //ALGO_BUBBLE_SORT_H
