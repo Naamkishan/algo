@@ -1,16 +1,17 @@
 #include <LinkedList.h>
 
+namespace DS {
 
 template<typename T>
 class Stack {
  public:
-  Stack(){}
+  Stack() {}
 
-  void push(const T& value) {
+  void push(const T &value) {
     container_.push_back(value);
   }
 
-  void push(const T&& value) {
+  void push(const T &&value) {
     container_.push_back(std::move(value));
   }
 
@@ -24,5 +25,7 @@ class Stack {
   std::size_t size() const { return container_.size(); }
 
  private:
-  DS::LinkedList<T>  container_;
+  DS::LinkedList<T> container_;
 };
+
+} // namespace DS

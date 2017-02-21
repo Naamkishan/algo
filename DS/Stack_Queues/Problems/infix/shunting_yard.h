@@ -8,6 +8,8 @@
 #include <string>
 #include "Stack.h"
 
+using namespace DS;
+
 namespace {
 
 bool is_operator(const std::string& op) {

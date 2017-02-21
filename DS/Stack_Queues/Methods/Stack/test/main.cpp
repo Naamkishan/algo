@@ -1,6 +1,8 @@
 #include <gtest/gtest.h>
 #include "Stack.h"
 
+using namespace DS;
+
 TEST(TestStack, Initialisation) {
   ASSERT_NO_THROW(Stack<int> stack);
 }

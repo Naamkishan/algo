@@ -13,7 +13,7 @@ UnionFind::UnionFind(std::size_t nodes) {
 }
 
 
-std::size_t UnionFind::root(std::size_t i) {
+std::size_t UnionFind:: root(std::size_t i) {
   std::size_t root_index = container_[i];
 
   while(container_[root_index] != root_index) {
