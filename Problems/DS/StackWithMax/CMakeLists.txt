@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
-project(Q_2Stacks)
+project(StackWithMax)
 
-set(PROJECT_BINARY "Q_2Stacks")
+set(PROJECT_BINARY "StackWithMax")
 
 set(BOOST_VERSION "1.63.0")
 option(USE_STATIC_BOOST "Build with static BOOST libraries instead of dynamic" ON)
@@ -32,6 +32,6 @@ list(APPEND LIBRARIES "libgtest.a")
 list(APPEND LIBRARIES ${CMAKE_THREAD_LIBS_INIT})
 list(APPEND LIBRARIES ${Boost_LIBRARIES})
 
-set(SOURCE_FILES Test_Q_2Stacks.cpp)
+set(SOURCE_FILES Test_StackWithMax.cpp)
 add_executable(${PROJECT_BINARY} ${SOURCE_FILES})
 target_link_libraries(${PROJECT_BINARY} ${LIBRARIES})
