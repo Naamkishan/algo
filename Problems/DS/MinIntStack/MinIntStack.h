@@ -37,7 +37,7 @@ class MinIntStack {
    * @return    int
    */
   int pop() {
-    if(stack_.empty())    throw std::runtime_error("Underflow!");
+    if(stack_.empty())    throw std::out_of_range("Underflow!");
     auto value = stack_.top();
     stack_.pop();
 
@@ -56,7 +56,7 @@ class MinIntStack {
    * @return    int
    */
   int min() {
-    if(stack_.empty())    throw std::runtime_error("Underflow!");
+    if(stack_.empty())    throw std::out_of_range("Underflow!");
     return cur_min_;
   }
 

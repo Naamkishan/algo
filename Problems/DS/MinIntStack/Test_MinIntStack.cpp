@@ -15,7 +15,7 @@ constexpr int NUMBER{100};
 TEST(Test_MinIntStack, UnderflowCheck) {
   algo::problems::MinIntStack min_stack;
 
-  EXPECT_THROW(min_stack.pop(), std::runtime_error);
+  EXPECT_THROW(min_stack.pop(), std::out_of_range);
 }
 
 
