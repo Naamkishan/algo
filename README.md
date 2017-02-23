@@ -23,6 +23,8 @@ Some well know problems are also part of this project.
             *   GCD - greatest common divisor between two numbers. This uses the concept of stack.
             *   Infix Expression Evaluation:
                 *   Dijsktraa's Two Stack - The Shunting Yard Algorithm
+            *   IntStack with Min - Space and Time complexity both are O(1)
+            *   IntStack with Max - Space and Time complexity both are O(1)
       
                
 * **Sorting Algorithms**
