@@ -6,6 +6,7 @@
 
 namespace DS {
 
+
 /**
  * @brief   A simple non-thread safe implementation of a singly linked list
  */
