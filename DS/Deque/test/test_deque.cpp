@@ -8,6 +8,12 @@ class DequeTest : public testing::Test {
   DS::Deque<int>    deque_;
 };
 
+TEST_F(DequeTest, Empty) {
+  EXPECT_EQ(deque_.size(), 0);
+  EXPECT_TRUE(deque_.empty());
+}
+
+
 TEST_F(DequeTest, UnderflowException) {
   EXPECT_THROW(deque_.pop_back(), std::out_of_range);
 }
