@@ -2,7 +2,15 @@
 
 namespace DS {
 
-template<typename T>
+/**
+ * @brief   Stack : implements the standard methods (as per Coursera course)
+ *
+ * @tparam  T           :   data type of Stack
+ * @tparam  Container   :   data structure used internally to hold elements. Should be compliant with std containers like list and vector
+ */
+template<typename T,
+    template <typename> class Container = LinkedList
+>
 class Stack {
  public:
   Stack() {}
@@ -25,7 +33,7 @@ class Stack {
   std::size_t size() const { return container_.size(); }
 
  private:
-  DS::LinkedList<T> container_;
+  Container<T> container_;
 };
 
 } // namespace DS
