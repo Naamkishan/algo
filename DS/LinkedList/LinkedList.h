@@ -1,7 +1,7 @@
-
 #ifndef ALGO_DS_LINKEDLIST_H
 #define ALGO_DS_LINKEDLIST_H
 
+#include <iterator>
 #include <stdexcept>
 
 namespace DS {
@@ -38,7 +38,7 @@ class LinkedList {
 
   }
 
-  LinkedList& push_back(const T&& value) {
+  LinkedList& emplace_back(const T &&value) {
     Node *node = new Node(std::move(value));
     append_node(node);
     return *this;
@@ -50,7 +50,7 @@ class LinkedList {
     return *this;
   }
 
-  LinkedList& push_front(const T&& value) {
+  LinkedList& emplace_front(const T &&value) {
     head_ = new Node(std::move(value), head_);
     return *this;
   }

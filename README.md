@@ -25,6 +25,7 @@ Some well know problems are also part of this project.
                 *   Dijsktraa's Two Stack - The Shunting Yard Algorithm
             *   IntStack with Min - Space and Time complexity both are O(1)
             *   IntStack with Max - Space and Time complexity both are O(1)
+    * Deque
       
                
 * **Sorting Algorithms**
