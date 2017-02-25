@@ -368,27 +368,6 @@ class LinkedList : public std::allocator<T> {
   detail::Node<T>        *head_;
 };
 
-/*
-
-namespace std {
-
-template<>
-struct iterator_traits<LinkedListIterator> {
-  using iterator_category = typename LinkedListIterator::iterator_category;
-  using value_type = typename LinkedListIterator::value_type;
-  using difference_type = typename LinkedListIterator::difference_type;
-};
-
-template<>
-struct iterator_traits<ConstLinkedListIterator > {
-  using iterator_category = typename ConstLinkedListIterator::iterator_category;
-  using value_type = typename ConstLinkedListIterator::value_type;
-  using difference_type = typename ConstLinkedListIterator::difference_type;
-};
-
-}
-*/
-
 } // namespace DS
 
 
