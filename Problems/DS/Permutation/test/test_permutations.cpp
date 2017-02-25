@@ -7,7 +7,7 @@
 #include "Permutation.h"
 
 namespace {
-const int NUMBER = {100};
+const int NUMBER = {2048};
 }
 
 class TestPermutation : public testing::Test {
