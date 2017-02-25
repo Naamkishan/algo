@@ -85,6 +85,13 @@ class RandomisedQueue {
    */
   bool empty() const { return container_.empty(); }
 
+  /**
+   * @brief clear: pop out all the values
+   */
+  void clear() {
+    container_.clear();
+  }
+
  private:
 
   std::size_t rand_gen() const {

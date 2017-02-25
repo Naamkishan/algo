@@ -102,6 +102,11 @@ class Deque {
    */
   auto cend() const { return  container_.end(); }
 
+  /**
+   * @brief     clear : clear all the elements of the underlying container
+   */
+  void clear() { container_.clear(); }
+
  private:
   Container<T>    container_;
 };
