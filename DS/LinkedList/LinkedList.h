@@ -27,8 +27,8 @@ struct Node {
   Node(const T&& data, Node* next = nullptr) : data_(std::move(data)), next_{next} {}
   Node(const Node&& other) : data_(std::move(other.data_)), next_(other.next_) { other.next_ = nullptr;}
 
-  T& reference() { return data_; }
-  const T& reference() const { return data_; }
+  T& reference() { return std::forward<T&>(data_); }
+  const T& reference() const { return std::forward<const T&>(data_); }
   T* pointer() { return &data_; }
   T* const pointer() const { return &data_; }
 
@@ -45,17 +45,20 @@ struct Node {
 template<typename T>
 class LinkedListIterator :
     public std::iterator<std::forward_iterator_tag,
-                         LinkedList<T>,
-                         typename LinkedList<T>::difference_type,
-                         typename LinkedList<T>::pointer,
-                         typename LinkedList<T>::reference>
+                         T,
+                         typename std::allocator<T>::difference_type,
+                         typename std::allocator<T>::pointer,
+                         typename std::allocator<T>::reference
+    >
 {
   friend class LinkedList<T>;
   friend class ConstLinkedListIterator<T>;
 
   // concepts
-  using reference = typename LinkedList<T>::const_reference;
-  using pointer = typename LinkedList<T>::const_pointer;
+  using traits_type = std::iterator_traits<LinkedListIterator>;
+  using reference = typename traits_type::reference ;
+  using pointer = typename traits_type::pointer;
+  using difference_type = typename traits_type::difference_type;
 
  private:
   // ensure that only the container has access to its creation
@@ -130,17 +133,20 @@ class LinkedListIterator :
 template<typename T>
 class ConstLinkedListIterator :
     public std::iterator<std::forward_iterator_tag,
-                         LinkedList<T>,
-                         typename LinkedList<T>::difference_type,
-                         typename LinkedList<T>::const_pointer,
-                         typename LinkedList<T>::const_reference>
+                         T,
+                         typename std::allocator<T>::difference_type,
+                         typename std::allocator<T>::const_pointer,
+                         typename std::allocator<T>::const_reference>
 {
   friend class LinkedList<T>;
 
+  using traits_type = std::iterator_traits<ConstLinkedListIterator>;
+
  public:
   // concepts
-  using reference = typename LinkedList<T>::const_reference;
-  using pointer = typename LinkedList<T>::const_pointer;
+  using reference = typename traits_type::reference;
+  using pointer = typename traits_type::pointer;
+  using difference_type = typename traits_type::difference_type;
 
  private:
   // ensure that only the container has access to its creation

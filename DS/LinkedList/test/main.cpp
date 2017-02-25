@@ -174,6 +174,8 @@ TEST(TestLinkedList, CheckIterators) {
   }
 
   ASSERT_TRUE(list.size() == 5);
+  ASSERT_EQ(std::distance(list.begin(), list.end()), 5);
+
 
   auto vitr = input.begin();
   for(auto itr = list.begin(); itr != list.end(); ++itr) {
@@ -187,7 +189,7 @@ TEST(TestLinkedList, CheckIterators) {
     ++vitr;
   }
 
-  // std::distance(list.begin(), list.end());
+
 }
 
 
