@@ -1,3 +1,5 @@
+#include <iterator>
+#include <vector>
 #include <stdexcept>
 #include <gtest/gtest.h>
 #include "LinkedList.h"
@@ -160,7 +162,32 @@ TEST(TestLinkedList, ListPushBackPopFront) {
   list.pop_front();
 
   ASSERT_TRUE(list.empty() == true);
+}
 
+TEST(TestLinkedList, CheckIterators) {
+
+  std::vector<int> input = { 5, 4, 3, 2, 1 };
+
+  DS::LinkedList<int> list;
+  for(auto& elem : input) {
+    list.push_back(elem);
+  }
+
+  ASSERT_TRUE(list.size() == 5);
+
+  auto vitr = input.begin();
+  for(auto itr = list.begin(); itr != list.end(); ++itr) {
+    EXPECT_EQ(*itr, *vitr);
+    ++vitr;
+  }
+
+  vitr = input.begin();
+  for(auto itr = list.cbegin(); itr != list.cend(); ++itr) {
+    EXPECT_EQ(*itr, *vitr);
+    ++vitr;
+  }
+
+  // std::distance(list.begin(), list.end());
 }
 
 
