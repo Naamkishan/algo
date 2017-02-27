@@ -32,6 +32,6 @@ list(APPEND LIBRARIES "libgtest.a")
 list(APPEND LIBRARIES ${CMAKE_THREAD_LIBS_INIT})
 list(APPEND LIBRARIES ${Boost_LIBRARIES})
 
-set(SOURCE_FILES Test_RevSinglyLL.cpp)
+set(SOURCE_FILES Test_RevSinglyLL.cpp Test_ReverseLinkedList.cpp reverse_sll.h)
 add_executable(${PROJECT_BINARY} ${SOURCE_FILES})
 target_link_libraries(${PROJECT_BINARY} ${LIBRARIES})
