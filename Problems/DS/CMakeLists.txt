@@ -1,8 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(AlgoDSProblems)
+project(AlgoStackProblems)
 
-add_subdirectory(Q_2Stacks)
-add_subdirectory(StackWithMax)
-add_subdirectory(MinIntStack)
-add_subdirectory(MaxIntStack)
-add_subdirectory(Permutation)
+add_subdirectory(Stack)
+add_subdirectory(LinkedList)
