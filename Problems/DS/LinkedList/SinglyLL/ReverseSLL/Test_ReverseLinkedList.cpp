@@ -96,3 +96,74 @@ TEST_F(SLLTest, ReverseMultipleElements) {
     EXPECT_TRUE(algo::problems::lists_equal(list_, src));
   }
 }
+
+
+TEST_F(SLLTest, ReverseSublist2Block3Elem) {
+  algo::problems::add_node(list_, new algo::problems::LinkedList<int>(1));
+  algo::problems::add_node(list_, new algo::problems::LinkedList<int>(2));
+  algo::problems::add_node(list_, new algo::problems::LinkedList<int>(3));
+  EXPECT_EQ(algo::problems::list_size(list_), 3);
+
+  algo::problems::LinkedList<int>*   src{nullptr};
+  algo::problems::add_node(src, new algo::problems::LinkedList<int>(2));
+  algo::problems::add_node(src, new algo::problems::LinkedList<int>(1));
+  algo::problems::add_node(src, new algo::problems::LinkedList<int>(3));
+
+  algo::problems::reverse_list_by_blocks(list_, 2);
+  EXPECT_TRUE(algo::problems::lists_equal(list_, src));
+}
+
+TEST_F(SLLTest, ReverseSublist2Block4Elem) {
+  algo::problems::add_node(list_, new algo::problems::LinkedList<int>(1));
+  algo::problems::add_node(list_, new algo::problems::LinkedList<int>(2));
+  algo::problems::add_node(list_, new algo::problems::LinkedList<int>(3));
+  algo::problems::add_node(list_, new algo::problems::LinkedList<int>(4));
+  EXPECT_EQ(algo::problems::list_size(list_), 4);
+
+  algo::problems::LinkedList<int>*   src{nullptr};
+  algo::problems::add_node(src, new algo::problems::LinkedList<int>(2));
+  algo::problems::add_node(src, new algo::problems::LinkedList<int>(1));
+  algo::problems::add_node(src, new algo::problems::LinkedList<int>(4));
+  algo::problems::add_node(src, new algo::problems::LinkedList<int>(3));
+
+  algo::problems::reverse_list_by_blocks(list_, 2);
+  EXPECT_TRUE(algo::problems::lists_equal(list_, src));
+}
+
+TEST_F(SLLTest, ReverseSublist2Block5Elem) {
+  algo::problems::add_node(list_, new algo::problems::LinkedList<int>(1));
+  algo::problems::add_node(list_, new algo::problems::LinkedList<int>(2));
+  algo::problems::add_node(list_, new algo::problems::LinkedList<int>(3));
+  algo::problems::add_node(list_, new algo::problems::LinkedList<int>(4));
+  algo::problems::add_node(list_, new algo::problems::LinkedList<int>(5));
+  EXPECT_EQ(algo::problems::list_size(list_), 5);
+
+  algo::problems::LinkedList<int>*   src{nullptr};
+  algo::problems::add_node(src, new algo::problems::LinkedList<int>(2));
+  algo::problems::add_node(src, new algo::problems::LinkedList<int>(1));
+  algo::problems::add_node(src, new algo::problems::LinkedList<int>(4));
+  algo::problems::add_node(src, new algo::problems::LinkedList<int>(3));
+  algo::problems::add_node(src, new algo::problems::LinkedList<int>(5));
+
+  algo::problems::reverse_list_by_blocks(list_, 2);
+  EXPECT_TRUE(algo::problems::lists_equal(list_, src));
+}
+
+TEST_F(SLLTest, ReverseSublist3Block5Elem) {
+  algo::problems::add_node(list_, new algo::problems::LinkedList<int>(1));
+  algo::problems::add_node(list_, new algo::problems::LinkedList<int>(2));
+  algo::problems::add_node(list_, new algo::problems::LinkedList<int>(3));
+  algo::problems::add_node(list_, new algo::problems::LinkedList<int>(4));
+  algo::problems::add_node(list_, new algo::problems::LinkedList<int>(5));
+  EXPECT_EQ(algo::problems::list_size(list_), 5);
+
+  algo::problems::LinkedList<int>*   src{nullptr};
+  algo::problems::add_node(src, new algo::problems::LinkedList<int>(3));
+  algo::problems::add_node(src, new algo::problems::LinkedList<int>(2));
+  algo::problems::add_node(src, new algo::problems::LinkedList<int>(1));
+  algo::problems::add_node(src, new algo::problems::LinkedList<int>(5));
+  algo::problems::add_node(src, new algo::problems::LinkedList<int>(4));
+
+  algo::problems::reverse_list_by_blocks(list_, 3);
+  EXPECT_TRUE(algo::problems::lists_equal(list_, src));
+}

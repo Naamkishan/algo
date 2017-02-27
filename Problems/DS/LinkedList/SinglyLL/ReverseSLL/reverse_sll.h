@@ -80,6 +80,41 @@ void reverse_list(LinkedList<T>* &head) {
   }
 }
 
+/**
+ * @brief   reverse_list_by_blocks : reverse blocks of linked list
+ *
+ * e.g. 1 -> 2 -> 3 -> 4 -> 5 to be reversed in blocks of 2 : 2 -> 1 -> 4 -> 3 -> 5
+ *
+ * @param head : first node of the list
+ * @param block_size : size of the sub list (whose nodes need to be reversed)
+ */
+template <typename T>
+void reverse_list_by_blocks(LinkedList<T>* &head, std::size_t block_size) {
+  if(head) {
+    LinkedList<T>*  previous = head;
+    LinkedList<T>* current = head->next_;
+
+    LinkedList<T>** new_tail = &head->next_;
+    std::size_t block_idx;
+
+    if(*new_tail) {
+      for(block_idx = 1; *new_tail  && (block_idx < block_size); ++block_idx) {
+        *new_tail = current->next_;
+        current->next_ = previous;
+
+        head = current;
+
+        // update the pointers
+        previous = current;
+        current = *new_tail;
+      }
+
+      // now recursively delegate the next sublist reversal
+      reverse_list_by_blocks(*new_tail, block_size);
+    }
+  }
+}
+
 } // namespace algo::problems
 
 } // namesapce algo
