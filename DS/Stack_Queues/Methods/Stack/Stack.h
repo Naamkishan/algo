@@ -14,6 +14,7 @@ template<typename T,
 class Stack {
  public:
   Stack() {}
+  virtual ~Stack() { container_.clear(); }
 
   void push(const T &value) {
     container_.push_back(value);
