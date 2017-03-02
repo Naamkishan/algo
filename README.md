@@ -16,6 +16,10 @@ Some well know problems are also part of this project.
     
 * **DS - Data Structures**
     -
+    * Others
+        *   Problems
+            -
+            *   Get shortest path to connect two or more points in a 2D Grid
     * Linked List
         *   Problems
             -
