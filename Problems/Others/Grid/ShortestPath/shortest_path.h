@@ -52,7 +52,7 @@ class Grid {
       directions = set_allowed_directions(directions, AllowedDirections::DOWN);
 
     // enable diagonal only if both x and y axis can be traversed
-    if(dir_max_allowed_ & AllowedDirections::DIAGONAL) {
+    if((bool)(dir_max_allowed_ & AllowedDirections::DIAGONAL)) {
       if(x_diff && y_diff)
         directions = set_allowed_directions(directions, AllowedDirections::DIAGONAL);
     }
@@ -117,9 +117,9 @@ class Grid {
 
     // move in horizontal direction
     int move_horz{0};
-    if(dir & AllowedDirections::LEFT) {
+    if((bool)(dir & AllowedDirections::LEFT)) {
       move_horz = -1;
-    } else if(dir & AllowedDirections::RIGHT) {
+    } else if((bool)(dir & AllowedDirections::RIGHT)) {
       move_horz = +1;
     }
 
@@ -129,9 +129,9 @@ class Grid {
 
     // movement in vert direction
     int move_vert{0};
-    if(dir & AllowedDirections::UP) {
+    if((bool)(dir & AllowedDirections::UP)) {
       move_vert = 1;
-    } else if(dir & AllowedDirections::DOWN) {
+    } else if((bool)(dir & AllowedDirections::DOWN)) {
       move_vert = -1;
     }
 
@@ -141,7 +141,7 @@ class Grid {
     }
 
     int diag_moves = ERR_MOVENUM;
-    if(dir & AllowedDirections::DIAGONAL) {
+    if((bool)(dir & AllowedDirections::DIAGONAL)) {
       diag_moves = 1 + get_num_moves(Coordinates{src.x_ + move_horz, src.y_ + move_vert}, dest, dir);
     }
 

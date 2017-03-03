@@ -38,7 +38,7 @@ struct TruthValue {
 /**
  * Allowed directions to traverse the grid
  */
-enum AllowedDirections {
+enum class AllowedDirections {
   NONE = 0,     // not set
   RIGHT = 1,
   LEFT = 2,
