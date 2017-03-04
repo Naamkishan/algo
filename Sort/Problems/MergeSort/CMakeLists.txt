@@ -2,3 +2,4 @@ cmake_minimum_required(VERSION 3.5)
 project(MergeSortProblems)
 
 add_subdirectory(MergingSmallerAuxArray)
+add_subdirectory(CountingInversion)

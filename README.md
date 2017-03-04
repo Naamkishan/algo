@@ -57,4 +57,5 @@ Some well know problems are also part of this project.
         * Problems
             -
             * Merging with smaller auxiliary array.
+            * Counting number of inversions
             
