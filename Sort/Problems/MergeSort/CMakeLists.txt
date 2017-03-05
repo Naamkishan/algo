@@ -3,3 +3,4 @@ project(MergeSortProblems)
 
 add_subdirectory(MergingSmallerAuxArray)
 add_subdirectory(CountingInversion)
+add_subdirectory(ShufflingLinkedList)
