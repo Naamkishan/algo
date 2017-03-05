@@ -62,20 +62,15 @@ std::size_t merge_with_env_cnt(RandomIterator begin,
   std::copy(left, end, aux);
 
   while((left != partition) && (mid != end)) {
-    // iterate till the first smaller element is encountered in the second sublist (mid)
-    while((left != partition) && (*left < *mid)) {
-      *aux++ = *left++;
-    }
-
-    // if the first sublist has been completely consumed; the remaining right sublist has to be sorted
-    if(left == partition)
-      break;
-
-    // move on the second sub list till
-    if((mid != end) && (*mid < *left)) {
-      *aux++ = *mid++;
+    if(*left < *mid) {
+      *aux = *left;
+      ++left;
+    } else {
+      *aux = *mid;
       inversions += std::distance(left, partition);
+      ++mid;
     }
+    ++aux;
   }
 
   // if second sublist has been consumed but the first remains... copy it to the auxilary buffer
