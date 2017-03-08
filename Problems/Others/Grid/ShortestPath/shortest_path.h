@@ -7,6 +7,7 @@
 
 #include <array>
 #include <limits>
+#include <stdexcept>
 #include <vector>
 
 #include "grid_components.h"
@@ -98,7 +99,68 @@ class Grid {
     return moves;
   }
 
+  /**
+   * @brief         Gets the minimum number of moves to reach from src to dest.
+   * @param src     Coordinates of source
+   * @param dest    Coordinates of destination
+   * @return        Number of moves
+   */
+  int get_min_moves(const Coordinates& src, const Coordinates& dest) {
+    if(!sanity_check(src) || !sanity_check(dest))
+      throw std::runtime_error("Out of bounds!");
+
+    int min_moves{0};
+    int x_diff = std::abs(dest.x_ - src.x_);
+    int y_diff = std::abs(dest.y_ - src.y_);
+
+    // move as long as me reach from source to destination
+    while(x_diff || y_diff) {
+      if(x_diff)
+        --x_diff;
+      if(y_diff)
+        --y_diff;
+
+      ++min_moves;
+    }
+
+    return min_moves;
+  }
+
+
+  /**
+   * @brief     Get the number of min moves to connect all the points supplied
+   * @param src         : source
+   * @param begin       : start of list of coordinates that needs to be traversed to
+   * @param end         : end of list of coordinates that needs to be traversed to
+   * @return            : number of steps to connect all associated coordinates
+   *                        In case of any of the coordinates are invalid, it returns ERR_MOVENUM
+   */
+  template<typename ForwardIterator>
+  int get_min_moves(const Coordinates& src, ForwardIterator begin, ForwardIterator end) {
+    if(std::distance(begin, end) == 0) {
+      throw std::runtime_error("No destination given!");
+    }
+
+    int moves{0};
+    Coordinates from = src;
+
+    for(auto itr = std::next(begin); itr != end; ++itr)  {
+      moves += get_min_moves(from, *itr);
+      from = *itr;
+    }
+
+    return moves;
+  }
+
+
  private:
+  bool sanity_check(const Coordinates& coordinates) {
+    if((coordinates.x_ < 0 || coordinates.x_ == ROWS) ||
+        (coordinates.y_ < 0 || coordinates.y_ == COLUMNS))
+      return false;
+    return true;
+  }
+
   int get_num_moves(const Coordinates& src, const Coordinates& dest, AllowedDirections dir) {
     // stop propagation when attempt is made to move out of bounds
     if((dest.x_ < 0 || dest.x_ == ROWS) ||
@@ -114,6 +176,7 @@ class Grid {
     // reached destination ... no additional increments
     if(dir == AllowedDirections::NONE)
       return 0;
+
 
     // move in horizontal direction
     int move_horz{0};
@@ -148,10 +211,12 @@ class Grid {
     return std::min(diag_moves, std::min(horz_moves, vert_moves));
   }
 
+
  public:
   static constexpr const int ERR_MOVENUM = std::numeric_limits<int>::max();
 
  private:
+
   AllowedDirections dir_max_allowed_;   // max allowed directions; in reality only a subset can be used
   const int         ROWS;
   const int         COLUMNS;
