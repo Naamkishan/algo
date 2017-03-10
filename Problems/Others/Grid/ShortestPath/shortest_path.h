@@ -105,23 +105,15 @@ class Grid {
    * @param dest    Coordinates of destination
    * @return        Number of moves
    */
-  int get_min_moves(const Coordinates& src, const Coordinates& dest) {
+  int get_min_moves_norestrict(const Coordinates &src, const Coordinates &dest) {
     if(!sanity_check(src) || !sanity_check(dest))
       throw std::runtime_error("Out of bounds!");
 
-    int min_moves{0};
     int x_diff = std::abs(dest.x_ - src.x_);
     int y_diff = std::abs(dest.y_ - src.y_);
 
-    // move as long as me reach from source to destination
-    while(x_diff || y_diff) {
-      if(x_diff)
-        --x_diff;
-      if(y_diff)
-        --y_diff;
-
-      ++min_moves;
-    }
+    int min_moves = std::min(x_diff, y_diff) // the diagonal movement
+        + std::abs(x_diff - y_diff);         // the axis movement
 
     return min_moves;
   }
@@ -136,7 +128,7 @@ class Grid {
    *                        In case of any of the coordinates are invalid, it returns ERR_MOVENUM
    */
   template<typename ForwardIterator>
-  int get_min_moves(const Coordinates& src, ForwardIterator begin, ForwardIterator end) {
+  int get_min_moves_norestrict(const Coordinates &src, ForwardIterator begin, ForwardIterator end) {
     if(std::distance(begin, end) == 0) {
       throw std::runtime_error("No destination given!");
     }
@@ -145,7 +137,7 @@ class Grid {
     Coordinates from = src;
 
     for(auto itr = std::next(begin); itr != end; ++itr)  {
-      moves += get_min_moves(from, *itr);
+      moves += get_min_moves_norestrict(from, *itr);
       from = *itr;
     }
 
