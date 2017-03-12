@@ -59,4 +59,5 @@ Some well know problems are also part of this project.
             * Merging with smaller auxiliary array.
             * Counting number of inversions
             * Shuffle linked list using merge sort algorithm
+            * Collinear Points
             
