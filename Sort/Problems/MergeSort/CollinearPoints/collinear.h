@@ -1,6 +1,7 @@
 #ifndef ALGO_COLLINEAR_H
 #define ALGO_COLLINEAR_H
 
+#include <ostream>
 #include <limits>
 
 namespace algo {
@@ -33,6 +34,12 @@ struct Point {
     return y_diff/x_diff;
   }
 
+  bool operator==(const Point& pt) const {
+    if(pt.y_ == y_)
+      return pt.x_ == x_;
+    return false;
+  }
+
   bool operator<(const Point& pt) const {
     if(pt.y_ == y_) {
       return x_ < pt.x_;
@@ -59,7 +66,18 @@ struct LineSegment {
   }
 
   double slope() const { return from_.slope(to_); }
+  bool contains(const Point& pt) const {
+    if((pt == to_) || (pt == from_))return true;
+    return (to_.slope(pt) == slope()) && (from_.slope(pt) == slope());
+  }
+
+  void print(std::ostream& oss) const {
+    oss << "From (" << from_.x_ << ", " << from_.y_ << ") => to (" << to_.x_ << " , " << to_.y_ << ") ";
+  }
+
+
 };
+
 
 } // algo::problems
 
