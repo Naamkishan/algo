@@ -28,7 +28,8 @@ struct Point {
     double x_diff = other.x_ - x_;
 
     if(x_diff == 0) {
-      return (y_diff < 0) ? std::numeric_limits<double>::min() : std::numeric_limits<double>::max();
+      // return (y_diff < 0) ? std::numeric_limits<double>::min() : std::numeric_limits<double>::max();
+      return std::numeric_limits<double>::max(); // giving different values of slope for +ve Y axis and -Y axis generates two different line segments
     }
 
     return y_diff/x_diff;
