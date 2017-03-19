@@ -5,8 +5,7 @@ set(PROJECT_BINARY "TestBinaryFind")
 
 FIND_PACKAGE (Threads REQUIRED)
 
-include_directories($ENV{HOME}/3rdParty/include ..)
-link_directories($ENV{HOME}/3rdParty/libs)
+include_directories(..)
 
 list(APPEND LIBRARIES "libgtest.a")
 list(APPEND LIBRARIES ${CMAKE_THREAD_LIBS_INIT})

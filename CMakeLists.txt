@@ -6,7 +6,8 @@ set(CMAKE_CXX_STANDARD 14)
 
 option(USE_STATIC_BOOST "Build with static BOOST libraries instead of dynamic" YES)
 
-include_directories($ENV{HOME}/3rdParty/include include)
+# include_directories($ENV{HOME}/3rdParty/include include)
+include_directories(include)
 
 set(ENV{GTEST_COLOR} "1")
 

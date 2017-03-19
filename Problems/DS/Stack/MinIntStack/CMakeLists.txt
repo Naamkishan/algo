@@ -26,7 +26,6 @@ endif()
 
 FIND_PACKAGE (Threads REQUIRED)
 
-link_directories($ENV{HOME}/3rdParty/libs)
 
 list(APPEND LIBRARIES "libgtest.a")
 list(APPEND LIBRARIES ${CMAKE_THREAD_LIBS_INIT})
