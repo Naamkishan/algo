@@ -41,7 +41,6 @@ Some well know problems are also part of this project.
     * **Elementary Sorts**
         * Methods
             -
-            * Selection Sort
             * Insertion Sort
             * Shell Sort
         * Problems
@@ -60,4 +59,10 @@ Some well know problems are also part of this project.
             * Counting number of inversions
             * Shuffle linked list using merge sort algorithm
             * Collinear Points
+    * **Quick Sort**
+        * Methods
+            -
+            * Quick Sort
+            * Selection Sort  - selection sort using quick sort's partition
+            * 3 Way Quick Sort - modified quick sort that takes into consideration of duplicate elements
             

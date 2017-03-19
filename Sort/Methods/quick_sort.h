@@ -68,9 +68,6 @@ template<typename RandomIter,
         typename std::iterator_traits<RandomIter>::value_type>
 >
 void quick_sort(RandomIter begin, RandomIter end, Comparator comparator = Comparator()) {
-
-  //TODO: Random shuffle the container contents before starting out to sort
-
   // sort only if the list has 2 or more elements
   if(std::distance(begin, end) > 1) {
     auto partition = partition_container(begin, end, comparator);
