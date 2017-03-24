@@ -1,3 +1,7 @@
+/**
+ * This solution does not solve this problem using back tracking. Back tracking solution will be given later
+ */
+
 #ifndef ALGO_PALINDROME_PARTITIONS_H
 #define ALGO_PALINDROME_PARTITIONS_H
 
@@ -11,9 +15,7 @@ namespace algo {
 
 namespace problems {
 
-namespace backtrack {
-
-namespace nth_palindrome {
+namespace partition_palindrome {
 
 using Strings = std::vector<std::string>;
 
@@ -57,41 +59,29 @@ StringsSet get_palindromes(BiIter begin, BiIter end, LookupMap* lookupmap) {
     StringsSet& all_palindromes = lookup[token];
 
     for(auto itr = begin; itr != end; ++itr)  {
-      StringsSet left = get_palindromes(begin, itr, lookupmap);
-      std::string cur_palindrome(itr, std::next(itr));
+      StringsSet left = get_palindromes(begin, std::next(itr), lookupmap);
       StringsSet  right = get_palindromes(std::next(itr), end, lookupmap);
 
-      if(!left.empty()) {
-        StringsSet left_copy(left.begin(), left.end());
-        left.clear();
-        for(auto& palindromes : left_copy) {
-          Strings pal{palindromes};
-          pal.push_back(cur_palindrome);
-          left.insert(pal);
-        }
-      } else {
-        left.insert(Strings{cur_palindrome});
-      }
+      if(left.empty() && !right.empty()) {
+        all_palindromes.insert(left.begin(), left.end());
+      } else if(!left.empty() && right.empty()) {
+        all_palindromes.insert(right.begin(), right.end());
+      } else if(!left.empty() && !right.empty()) {
+        for(auto& l : left) {
+          Strings left_palindromes(l.begin(), l.end());
+            for(auto& r : right) {
+              Strings palindromes(left_palindromes);
+              palindromes.insert(palindromes.end(), r.begin(), r.end());
 
-      // now get all possible combinations
-      for(auto& l : left) {
-        Strings left_palindromes(l.begin(), l.end());
-        if(!right.empty()) {
-          for(auto& r : right) {
-            Strings palindromes(left_palindromes);
-            palindromes.insert(palindromes.end(), r.begin(), r.end());
-
-            // this would automagically ignore duplicate inserts
-            all_palindromes.insert(palindromes);
+              // this would automagically ignore duplicate inserts
+              all_palindromes.insert(palindromes);
+            }
           }
-        } else {
-          all_palindromes.insert(left_palindromes);
         }
-      }
-    }
 
-    if(palindrome(begin, end)) {
-      all_palindromes.insert(Strings{token});
+      if(palindrome(begin, end)) {
+        all_palindromes.insert(Strings{token});
+      }
     }
 
     return all_palindromes;
@@ -112,9 +102,7 @@ std::size_t  get_all_palindromes(const std::string& input, StringsSet* all_palin
 }
 
 
-} // nth_palindrome
-
-} // backtrack
+} // partition_palindrome
 
 } // problems
 

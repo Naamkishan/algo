@@ -45,7 +45,7 @@ TEST(TestPalindromes, geeks) {
 }
 
 TEST(TestPalindromesPartitions, see) {
-  using namespace algo::problems::backtrack::nth_palindrome;
+  using namespace algo::problems::partition_palindrome;
 
   std::string input("see");
   StringsSet palindromes;
@@ -61,7 +61,7 @@ TEST(TestPalindromesPartitions, see) {
 
 
 TEST(TestPalindromesPartitions, geeks) {
-  using namespace algo::problems::backtrack::nth_palindrome;
+  using namespace algo::problems::partition_palindrome;
 
   std::string input("geeks");
   StringsSet palindromes;
@@ -77,7 +77,7 @@ TEST(TestPalindromesPartitions, geeks) {
 }
 
 TEST(TestPalindromesPartitions, madam) {
-  using namespace algo::problems::backtrack::nth_palindrome;
+  using namespace algo::problems::partition_palindrome;
 
   std::string input("madam");
   StringsSet palindromes;
@@ -91,6 +91,38 @@ TEST(TestPalindromesPartitions, madam) {
   EXPECT_TRUE(std::equal(expected.begin(), expected.end(), palindromes.begin()));
   EXPECT_EQ(expected.size(), palindromes.size());
 
+}
+
+TEST(TestPalindromesPartitions, madamimadam) {
+  using namespace algo::problems::partition_palindrome;
+
+  std::string input("madamimadam");
+
+  StringsSet palindromes;
+
+  StringsSet expected{Strings{"m", "a", "d", "a", "m", "i", "m", "a", "d", "a", "m"}};
+  expected.insert(Strings{"m", "ada", "m", "i", "m", "a", "d", "a", "m"});
+  expected.insert(Strings{"m", "ada", "m", "i", "madam"});
+  expected.insert(Strings{"m", "a", "d", "a", "mim", "a", "d", "a", "m"});
+  expected.insert(Strings{"m", "a", "d", "a", "m", "i", "m", "ada", "m"});
+  expected.insert(Strings{"madam", "i", "m", "ada", "m"});
+  expected.insert(Strings{"madam", "i", "m", "a", "d", "a", "m"});
+  expected.insert(Strings{"m", "ada", "mim", "a", "d", "a", "m"});
+  expected.insert(Strings{"m", "ada", "mim", "ada", "m"});
+  expected.insert(Strings{"m", "ada", "m", "i", "m", "ada", "m"});
+  expected.insert(Strings{"m", "a", "d", "amima", "d", "a", "m"});
+  expected.insert(Strings{"m", "a", "d", "a", "mim", "ada", "m"});
+  expected.insert(Strings{"m", "a", "d", "a", "m", "i", "madam"});
+  expected.insert(Strings{"m", "ada", "m", "i", "madam"});
+  expected.insert(Strings{"m", "a", "damimad", "a", "m"});
+  expected.insert(Strings{"madam", "i", "madam"});
+  expected.insert(Strings{"m", "adamimada", "m"});
+  expected.insert(Strings{"madamimadam"});
+
+  get_all_palindromes(input, &palindromes);
+
+  EXPECT_EQ(expected.size(), palindromes.size());
+  EXPECT_TRUE(std::equal(expected.begin(), expected.end(), palindromes.begin()));
 }
 
 
