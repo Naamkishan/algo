@@ -3,10 +3,17 @@
 This project will contain the basic concepts of Data Structures and Algorithms.
 Some well know problems are also part of this project.
 
+* **Algorithms**
+    =
+    * Back Tracking
+        -
+        * Print all palindromic partitions of a string
 * **Search Algorithms**
-    -
+    =
     * UnionFind
+        -
     * Binary Search
+        -
         * Problems
             -
             * FairWorkload
@@ -15,17 +22,20 @@ Some well know problems are also part of this project.
         
     
 * **DS - Data Structures**
-    -
+    =
     * Others
+        -
         *   Problems
             -
             *   Get shortest path to connect two or more points in a 2D Grid
     * Linked List
+        -
         *   Problems
             -
             *   Reverse Linked List : Iteratively
             *   Find intersection of two singly linked lists
     * Stack
+        -    
         *   Problems
             -   
             *   GCD - greatest common divisor between two numbers. This uses the concept of stack.
@@ -34,11 +44,14 @@ Some well know problems are also part of this project.
             *   IntStack with Min - Space and Time complexity both are O(1)
             *   IntStack with Max - Space and Time complexity both are O(1)
     * Deque
+        -
+
       
                
 * **Sorting Algorithms**
-    -
+    =
     * **Elementary Sorts**
+        -
         * Methods
             -
             * Insertion Sort
@@ -48,6 +61,7 @@ Some well know problems are also part of this project.
             * Shuffling
             * Convex Hull
     * **Merge Sort**
+        -
         * Methods
             -
             * Recursive merge
@@ -60,6 +74,7 @@ Some well know problems are also part of this project.
             * Shuffle linked list using merge sort algorithm
             * Collinear Points
     * **Quick Sort**
+        -    
         * Methods
             -
             * Quick Sort
