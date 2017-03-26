@@ -1,7 +1,3 @@
-/**
- * This solution does not solve this problem using back tracking. Back tracking solution will be given later
- */
-
 #ifndef ALGO_PALINDROME_PARTITIONS_H
 #define ALGO_PALINDROME_PARTITIONS_H
 
