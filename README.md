@@ -8,7 +8,6 @@ Some well know problems are also part of this project.
     * Back Tracking
         -
         * Print all palindromic partitions of a string
-            * Solved without using backtracking
 * **Search Algorithms**
     =
     * UnionFind

@@ -33,12 +33,9 @@ bool is_palindrome(BiIter begin, BiIter end) {
 template<typename BiIter>
 void get_palindromes(BiIter begin, BiIter end, StringsVector* all_partitions, Strings *current_partition) {
   if(begin != end) {
-    Strings& cur_part = *current_partition;
-
     for(auto itr{begin}; itr != end; ++itr)  {
-      // debug purpose
-      std::string token(begin, std::next(itr));
       if(is_palindrome(begin, std::next(itr))) {
+        Strings& cur_part = *current_partition;
 
         // add this palindrome to our list in current partition
         cur_part.push_back(std::string(begin, std::next(itr)));
