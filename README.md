@@ -8,6 +8,7 @@ Some well know problems are also part of this project.
     * Back Tracking
         -
         * Print all palindromic partitions of a string
+        * N Queue in an N dimensional grid
 * **Search Algorithms**
     =
     * UnionFind
