@@ -1,6 +1,9 @@
 *Print all palindromic partitions of a string*
 =
 
+###    `Category:` `Backtrack`
+###    `Level:` `MEDIUM`
+
 
 Given a string s, partition s such that every string of the partition is a palindrome. Return all possible palindrome partitioning of s.
 
