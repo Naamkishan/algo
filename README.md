@@ -81,4 +81,7 @@ Some well know problems are also part of this project.
             * Quick Sort
             * Selection Sort  - selection sort using quick sort's partition
             * 3 Way Quick Sort - modified quick sort that takes into consideration of duplicate elements
+        * Problems
+            -
+            * Using two different ranges to cross sort each other - Nuts and Bolts
             
