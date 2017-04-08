@@ -30,6 +30,58 @@ struct Less{
 
 
 /**
+ * @brief   partitions a range using the pivot provided as an argument with the partition element occupying the partition position
+ *
+ * @param low           : start of range
+ * @param high          : end of range
+ * @param pivot         : used for partitioning the range referencing a different range
+ * @param comparator    : comparator function. Default to std::less
+ * @return              A RandomIterator that points to interator containing the value of the pivot
+ */
+template<typename RandomIterator1,
+    typename RandomIterator2,
+    typename Comparator1 = Less<typename std::iterator_traits<RandomIterator1>::value_type,
+                                typename std::iterator_traits<RandomIterator2>::value_type>,
+    typename Comparator2 = Less<typename std::iterator_traits<RandomIterator1>::value_type,
+                                typename std::iterator_traits<RandomIterator2>::value_type>
+
+>
+auto pivot_at_partition(RandomIterator1 low,
+                           RandomIterator1 high,
+                           RandomIterator2 pivot,
+                           Comparator1 comparator1 = Comparator1(),
+                           Comparator2 comparator2 = Comparator2() ) {
+  auto equal_itr = low;
+
+  // bring high to the last element
+  --high;
+
+  while(low != high) {
+
+    // traversal for low interator
+    for(; (low != high) && comparator1(*low, *pivot); ++low);
+
+    // swap the high and low
+    if(low != high)
+      std::iter_swap(low, high);
+
+    // traversal for high iterator
+    for(; (low != high) && !comparator1(*high, *pivot); --high) {
+      // equality check
+      if(!comparator2(*pivot, *high)) {
+        equal_itr = high;
+      }
+    }
+  }
+
+  // ensure that the equal value is at the partition
+  std::iter_swap(equal_itr, low);
+
+  return low;
+}
+
+
+/**
  * @brief   partitions a range using the pivot provided as an argument
  *
  * @param low           : start of range
@@ -56,10 +108,10 @@ auto partition_using_pivot(RandomIterator1 low,
   while(low != high) {
     if(comparator1(*low, *pivot)) {
       ++low;
-    } else  {
+    } else {
       std::iter_swap(low, --high);
       // save the equal position
-      if(!comparator2(*pivot, *high)) { // high now contains low
+      if (!comparator2(*pivot, *high)) { // high now contains low
         // equality condition
         equal_itr = high;
       }
@@ -107,8 +159,8 @@ void sort_cross_ref_ranges(RandomIterator1 begin_1,
     // by default take the middle element as pivot
     auto mid = std::distance(begin_2, end_2) >> 1;
 
-    auto partition_1 = partition_using_pivot(begin_1, end_1, std::next(begin_2, mid), comparator1, comparator2);
-    auto partition_2 = partition_using_pivot(begin_2, end_2, partition_1, comparator2, comparator1);
+    auto partition_1 = pivot_at_partition(begin_1, end_1, std::next(begin_2, mid), comparator1, comparator2);
+    auto partition_2 = pivot_at_partition(begin_2, end_2, partition_1, comparator2, comparator1);
 
     // list1 (begin_1, end_1] is sorted for partition_1
     sort_cross_ref_ranges(begin_1, partition_1, begin_2, partition_2, comparator1, comparator2);
