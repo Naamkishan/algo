@@ -3,3 +3,4 @@ project(SortProblems)
 
 add_subdirectory(NutsAndBolts)
 add_subdirectory(SelectInTwoSortedRanges)
+add_subdirectory(DecimalDominants)
