@@ -1,11 +1,9 @@
 #ifndef ALGO_KTH_LARGEST_MULTILIST_H
 #define ALGO_KTH_LARGEST_MULTILIST_H
 
+#include <functional>
 #include <iterator>
-#include <numeric>
-#include <stdexcept>
 #include <utility>
-#include <vector>
 
 namespace algo {
 
@@ -63,7 +61,7 @@ auto nth_element_sorted(ForwardIterator begin, ForwardIterator end, Comparator c
 template<typename BiIterator,
          typename Comparator = std::greater<typename std::iterator_traits<BiIterator>::value_type>
 >
-auto nth_element_2list_linear(BiIterator begin_1,
+auto largest_nth_element_2list_linear(BiIterator begin_1,
                               BiIterator end_1,
                               BiIterator begin_2,
                               BiIterator end_2,
@@ -113,7 +111,7 @@ auto nth_element_2list_linear(BiIterator begin_1,
 template<typename RandomIterator,
     typename Comparator = std::greater<typename std::iterator_traits<RandomIterator>::value_type>
 >
-auto nth_element_2list_logarithmic(RandomIterator start_1,
+auto largest_nth_element_2list_logarithmic(RandomIterator start_1,
                                    RandomIterator end_1,
                                    RandomIterator start_2,
                                    RandomIterator end_2,
@@ -174,7 +172,6 @@ auto nth_element_2list_logarithmic(RandomIterator start_1,
 
   return *std::next(active, difference);
 }
-
 
 } // algo::problems::nth_element::multilist
 

@@ -2,7 +2,7 @@
 
 #include <gtest/gtest.h>
 
-#include "kth_largest_multilist.h"
+#include "nth_largest_multilist.h"
 
 
 TEST(KthLargest, LinearOrder) {
@@ -11,7 +11,7 @@ TEST(KthLargest, LinearOrder) {
 
   using namespace algo::problems::nth_element::multilist;
 
-  EXPECT_EQ(nth_element_2list_linear(primes.begin(), primes.end(), squares.begin(), squares.end(), 2), 25);
+  EXPECT_EQ(largest_nth_element_2list_linear(primes.begin(), primes.end(), squares.begin(), squares.end(), 2), 25);
 }
 
 TEST(KthLargest, LogarithmicOrder_2) {
@@ -20,7 +20,7 @@ TEST(KthLargest, LogarithmicOrder_2) {
 
   using namespace algo::problems::nth_element::multilist;
 
-  EXPECT_EQ(nth_element_2list_logarithmic(primes.begin(), primes.end(), squares.begin(), squares.end(), 2), 25);
+  EXPECT_EQ(largest_nth_element_2list_logarithmic(primes.begin(), primes.end(), squares.begin(), squares.end(), 2), 25);
 }
 
 TEST(KthLargest, LogarithmicOrder_1) {
@@ -29,7 +29,7 @@ TEST(KthLargest, LogarithmicOrder_1) {
 
   using namespace algo::problems::nth_element::multilist;
 
-  EXPECT_EQ(nth_element_2list_logarithmic(primes.begin(), primes.end(), squares.begin(), squares.end(), 1), 36);
+  EXPECT_EQ(largest_nth_element_2list_logarithmic(primes.begin(), primes.end(), squares.begin(), squares.end(), 1), 36);
 }
 
 TEST(KthLargest, LogarithmicOrder_10) {
@@ -38,7 +38,7 @@ TEST(KthLargest, LogarithmicOrder_10) {
 
   using namespace algo::problems::nth_element::multilist;
 
-  EXPECT_EQ(nth_element_2list_logarithmic(primes.begin(), primes.end(), squares.begin(), squares.end(), 10), 2);
+  EXPECT_EQ(largest_nth_element_2list_logarithmic(primes.begin(), primes.end(), squares.begin(), squares.end(), 10), 2);
 }
 
 TEST(KthLargest, LogarithmicOrder_OneEmpty) {
@@ -47,7 +47,7 @@ TEST(KthLargest, LogarithmicOrder_OneEmpty) {
 
   using namespace algo::problems::nth_element::multilist;
 
-  EXPECT_EQ(nth_element_2list_logarithmic(primes.begin(), primes.end(), squares.begin(), squares.end(), 8), 1);
-  EXPECT_EQ(nth_element_2list_logarithmic(primes.begin(), primes.end(), squares.begin(), squares.end(), 1), 36);
-  EXPECT_EQ(nth_element_2list_logarithmic(primes.begin(), primes.end(), squares.begin(), squares.end(), 4), 9);
+  EXPECT_EQ(largest_nth_element_2list_logarithmic(primes.begin(), primes.end(), squares.begin(), squares.end(), 8), 1);
+  EXPECT_EQ(largest_nth_element_2list_logarithmic(primes.begin(), primes.end(), squares.begin(), squares.end(), 1), 36);
+  EXPECT_EQ(largest_nth_element_2list_logarithmic(primes.begin(), primes.end(), squares.begin(), squares.end(), 4), 9);
 }
