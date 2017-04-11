@@ -9,7 +9,7 @@ TEST(DecimalDominants, AllEvenList) {
   using IntVector = std::vector<int>;
   IntVector evens{2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22};
 
-  IntVector expected{20, 10};
+  IntVector expected{10, 20};
 
   using namespace algo::problems::partition;
   auto top = partition_range_by_predicate(evens.begin(),
@@ -19,7 +19,10 @@ TEST(DecimalDominants, AllEvenList) {
                                           }
   );
 
-  EXPECT_TRUE(std::equal(evens.begin(), top, expected.begin()));
+  IntVector result(evens.begin(), top);
+  std::sort(result.begin(), result.end());
+
+  EXPECT_TRUE(std::equal(result.begin(), result.end(), expected.begin()));
 }
 
 TEST(DecimalDominants, AllPass) {

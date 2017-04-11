@@ -24,11 +24,15 @@ template<typename ForwardIterator,
     typename UnaryPredicate
 >
 auto partition_range_by_predicate(ForwardIterator begin, ForwardIterator end, UnaryPredicate pred) {
-  while(begin != end) {
-    if(!pred(*begin))
-      std::iter_swap(begin, --end);
-    else
-      ++begin;
+  if(begin != end) {
+    --end;
+
+    for(; (begin != end) && pred(*begin); ++begin);
+
+    if(begin != end)
+      std::iter_swap(begin, end);
+
+    for(; (begin != end) && !pred(*end); --end);
   }
 
   return begin;
