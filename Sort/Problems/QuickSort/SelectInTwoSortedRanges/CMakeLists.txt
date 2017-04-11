@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
-project(NutsNBolts)
+project(NthLargestTwoSortedLists)
 
-set(PROJECT_BINARY "KthLargestTwoSortedLists")
+set(PROJECT_BINARY "NthLargestTwoSortedLists")
 
 FIND_PACKAGE (Threads REQUIRED)
 
