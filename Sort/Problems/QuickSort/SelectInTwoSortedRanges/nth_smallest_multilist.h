@@ -13,16 +13,27 @@ namespace nth_element {
 
 namespace multilist {
 
-
+/**
+ * @brief Get the Nth element of a sorted range depending on the condition
+ * @tparam ForwardIterator
+ * @tparam Comparator
+ * @param start_1
+ * @param end_1
+ * @param start_2
+ * @param end_2
+ * @param nth_index
+ * @param comparator
+ * @return the value of the nth element
+ */
 template<typename ForwardIterator,
     typename Comparator = std::less<typename std::iterator_traits<ForwardIterator>::value_type>
 >
-auto smallest_nth_element_2ranges_logarithmic(ForwardIterator start_1,
-                                              ForwardIterator end_1,
-                                              ForwardIterator start_2,
-                                              ForwardIterator end_2,
-                                              std::size_t nth_index,
-                                              Comparator comparator = Comparator()
+auto nth_element_2ranges_logarithmic(ForwardIterator start_1,
+                                     ForwardIterator end_1,
+                                     ForwardIterator start_2,
+                                     ForwardIterator end_2,
+                                     std::size_t nth_index,
+                                     Comparator comparator = Comparator()
 ) {
   --nth_index; // ours start from 0 based while caller expects 1 based
 

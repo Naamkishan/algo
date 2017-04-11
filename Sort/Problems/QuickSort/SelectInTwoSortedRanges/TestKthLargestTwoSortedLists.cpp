@@ -49,7 +49,7 @@ TEST(KthLargestUsingSmallest, LogarithmicOrder_10) {
 
   using namespace algo::problems::nth_element::multilist;
 
-  EXPECT_EQ(smallest_nth_element_2ranges_logarithmic(primes.rbegin(), primes.rend(), squares.rbegin(), squares.rend(), 1, std::greater<int>()), 36);
+  EXPECT_EQ(nth_element_2ranges_logarithmic(primes.rbegin(), primes.rend(), squares.rbegin(), squares.rend(), 1, std::greater<int>()), 36);
 }
 
 TEST(KthLargestUsingSmallest, LogarithmicOrder_1) {
@@ -58,7 +58,7 @@ TEST(KthLargestUsingSmallest, LogarithmicOrder_1) {
 
   using namespace algo::problems::nth_element::multilist;
 
-  EXPECT_EQ(smallest_nth_element_2ranges_logarithmic(primes.rbegin(), primes.rend(), squares.rbegin(), squares.rend(), 10, std::greater<int>()), 2);
+  EXPECT_EQ(nth_element_2ranges_logarithmic(primes.rbegin(), primes.rend(), squares.rbegin(), squares.rend(), 10, std::greater<int>()), 2);
 }
 
 
@@ -68,7 +68,7 @@ TEST(KthLargestUsingSmallest, LogarithmicOrder_5) {
 
   using namespace algo::problems::nth_element::multilist;
 
-  EXPECT_EQ(smallest_nth_element_2ranges_logarithmic(primes.rbegin(), primes.rend(), squares.rbegin(), squares.rend(), 5, std::greater<int>()), 9);
+  EXPECT_EQ(nth_element_2ranges_logarithmic(primes.rbegin(), primes.rend(), squares.rbegin(), squares.rend(), 5, std::greater<int>()), 9);
 }
 
 
