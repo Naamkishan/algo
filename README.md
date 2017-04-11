@@ -84,5 +84,6 @@ Some well know problems are also part of this project.
         * Problems
             -
             * Using two different ranges to cross sort each other - Nuts and Bolts
-            * Nth Element of two sorted lists (arrays)
+            * Nth Largest Element of two sorted lists (arrays)
+            
             
