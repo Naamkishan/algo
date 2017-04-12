@@ -46,6 +46,8 @@ Some well know problems are also part of this project.
             *   IntStack with Max - Space and Time complexity both are O(1)
     * Deque
         -
+    * Priority Queue
+        -
 
       
                
