@@ -14,10 +14,12 @@
 #include "quick_sort.h"
 #include "selection_sort.h"
 #include "qsort_3way.h"
+#include "heap_sort.h"
 
 namespace {
   constexpr int SIZE = {8095};
 }
+
 
 TEST(TestBubbleSort, SortedStdArray) {
   using Array = std::array<int, SIZE>;
@@ -336,6 +338,24 @@ TEST(TestStdQuickSort, UnSortedMultipleVectors_AllDuplicates) {
   algo::sort::using_std::quick_sort(src.begin(), src.end());
 
   ASSERT_EQ(src, expected);
+}
+
+
+
+/**
+ * Test Heap Sort
+ */
+TEST(TestHeapSort, UnSortedMultipleVectors) {
+  for(std::size_t size = {1}; size < (SIZE >> 2); size <<= 1) {
+    std::vector<int> expected(size);
+    std::iota(expected.begin(), expected.end(), 0);
+    std::vector<int> src(expected);
+    Utility::shuffle(src.begin(), src.end());
+
+    algo::sort::binary_heap::heap_sort(src.begin(), src.end());
+
+    ASSERT_EQ(src, expected);
+  }
 }
 
 
