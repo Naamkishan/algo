@@ -151,10 +151,10 @@ class DynamicMedian {
     // max size diff allowed is 1 (between the heaps)
     if(size_diff > 1) { // min heap is larger
       auto median = min_median_.dequeue();
-      max_median_.enqueue(median);
+      max_median_.enqueue(std::move(median));
     } else if(size_diff < -1) {  // max heap is larger
       auto median = max_median_.dequeue();
-      min_median_.enqueue(median);
+      min_median_.enqueue(std::move(median));
     }
   }
 
