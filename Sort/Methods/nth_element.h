@@ -45,7 +45,7 @@ RandomIterator nth_element(RandomIterator begin,
         break;
     }
 
-    for(; low != high, --high) {
+    for(; low != high; --high) {
       if(!comparator(*pivot, *high))
         break;
     }
