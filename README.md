@@ -48,6 +48,9 @@ Some well know problems are also part of this project.
         -
     * Priority Queue
         -
+        *   Problems
+            -
+            *   Dynamic Median - Design a data type that supports insertion/deletion in logartihmic time and median look up in constant time. 
 
       
                
