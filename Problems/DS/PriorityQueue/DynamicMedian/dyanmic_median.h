@@ -82,10 +82,10 @@ class DynamicMedian {
    * @brief Dequeue the root of the bigger heap
    * @return    the median before deletion of the median.
    */
-  auto dequeue() -> T&& {
+  auto dequeue() -> T {
     check_underflow();
 
-    auto median_value = median();
+    auto old_median = median();
 
     auto pq = which_pq();
     if(pq == PQSelect::GREATER)
@@ -95,14 +95,14 @@ class DynamicMedian {
 
     adjustPQ();
 
-    return std::move(median_value);
+    return old_median;
   }
 
   /**
    * @breif     gets the median of the current queue
    * @return    depending on the data type, the value of median may or may not be rounded off
    */
-  auto median() const -> MedianType&& {
+  auto median() const -> MedianType {
     check_underflow();
 
     MedianType median_value;
@@ -121,7 +121,7 @@ class DynamicMedian {
         throw std::runtime_error("Unreachable code!");
     }
 
-    return std::move(median_value);
+    return median_value;
   }
 
   /**
@@ -150,11 +150,9 @@ class DynamicMedian {
 
     // max size diff allowed is 1 (between the heaps)
     if(size_diff > 1) { // min heap is larger
-      auto median = min_median_.dequeue();
-      max_median_.enqueue(std::move(median));
+      max_median_.enqueue(min_median_.dequeue());
     } else if(size_diff < -1) {  // max heap is larger
-      auto median = max_median_.dequeue();
-      min_median_.enqueue(std::move(median));
+      min_median_.enqueue(max_median_.dequeue());
     }
   }
 
@@ -184,8 +182,8 @@ class DynamicMedian {
   GreaterComparator                     greater_comp_;
   LessComparator                        less_comp_;
 
-  PriorityQueue<T, GreaterComparator>   min_median_;
-  PriorityQueue<T, LessComparator>      max_median_;
+  PriorityQueue<T, LessComparator>      min_median_;
+  PriorityQueue<T, GreaterComparator>   max_median_;
 
 };
 

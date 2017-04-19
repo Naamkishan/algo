@@ -12,6 +12,7 @@
 #include "dyanmic_median.h"
 
 
+
 class TestDynamicMedian : public testing::Test {
  public:
   TestDynamicMedian() {}
@@ -20,6 +21,7 @@ class TestDynamicMedian : public testing::Test {
   algo::problems::DS::PriorityQueue::DynamicMedian<int, float>  dynamic_median_;
 
 };
+
 
 TEST_F(TestDynamicMedian, Empty) {
   using namespace algo::problems::DS::PriorityQueue;
@@ -58,7 +60,6 @@ TEST_F(TestDynamicMedian, Median_2) {
   }
 
 }
-
 
 TEST_F(TestDynamicMedian, Median_Multi) {
   using namespace algo::problems::DS::PriorityQueue;

@@ -43,7 +43,7 @@ class PriorityQueue {
    * @brief     Removes the root (top) element
    * @return    The previous root element (ie, the root of the heap prior to the pop operation)
    */
-  auto dequeue() -> T&& {
+  auto dequeue() -> T {
     auto top = root();
     auto last = std::next(queue_.end(), -1);
     std::iter_swap(queue_.begin(), last);
@@ -51,7 +51,7 @@ class PriorityQueue {
 
     sink(queue_.begin());  // sink ROOT
 
-    return std::move(top);
+    return top;
   }
 
   /**
@@ -59,11 +59,10 @@ class PriorityQueue {
    * @throws    std::range_error if attempted on
    * @return    root element
    */
-  auto root() const -> T&& {
+  auto root() const -> T {
     underflow_check();
 
-    T top = *queue_.begin();
-    return std::move(top);
+    return *queue_.begin();
   }
 
   /**
