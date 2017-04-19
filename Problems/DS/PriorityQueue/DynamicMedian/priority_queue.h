@@ -22,20 +22,12 @@ class PriorityQueue {
   PriorityQueue(Comparator comparator = Comparator()) : comparator_{comparator} {}
 
   /**
-   * @brief     inserts item at the end of the binary heap and bubbles it up to the appropriate position
-   * @param     item : lvalue item
-   */
-  void enqueue(const T &item) {
-    queue_.push_back(item);
-    swim(std::next(queue_.end(), -1));
-  }
-
-  /**
    * @brief     emplaces item at the end of the binary heap and bubbles it up to the appropriate position
    * @param     item : rvalue item
    */
-  void enqueue(T &&item) {
-    queue_.emplace_back(item);
+  template<typename U>
+  void enqueue(U&& item) {
+    queue_.emplace_back(std::forward<U>(item));
     swim(std::next(queue_.end(), -1));
   }
 
