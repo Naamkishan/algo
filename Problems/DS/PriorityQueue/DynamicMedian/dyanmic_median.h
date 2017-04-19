@@ -50,27 +50,20 @@ class DynamicMedian {
                 GreaterComparator greater_comp = GreaterComparator() ) :
       less_comp_(less_comp), greater_comp_(greater_comp) {}
 
-  /**
-   * @brief Enqeueue an object in the priority queue. Updates the median.
-   * @param item
-   */
-  void enqueue(const T& item) {
-    T value = item;
-    enqueue(std::move(value));
-  }
 
   /**
    * @brief Enqeueue an object in the priority queue. Updates the median.
-   * @param r-value item
+   * @param  item : Universal/Forwarding reference
    */
-  void enqueue(T&& item) {
+  template<typename U>
+  void enqueue(U&& item) {
     if(max_median_.empty()) {
-      max_median_.enqueue(std::move(item));
+      max_median_.enqueue(std::forward<U>(item));
     } else {
       if (greater_comp_(item, max_median_.root())) {
-        max_median_.enqueue(std::move(item));
+        max_median_.enqueue(std::forward<U>(item));
       } else {
-        min_median_.enqueue(std::move(item));
+        min_median_.enqueue(std::forward<U>(item));
       }
     }
 
